@@ -1,0 +1,261 @@
+openapi: 3.0.3
+info:
+  title: Global Relay Voice Archiving API
+  description: >-
+    The Global Relay Voice Archiving API provides a RESTful interface to capture
+    and archive audio and video files, including call recordings and meeting
+    recordings, into the Global Relay Archive. The API ensures all voice and
+    video communications are securely preserved for compliance and regulatory
+    requirements. Authentication uses the Client Credentials OAuth 2.0 grant
+    type with Bearer tokens. The maximum data payload per request is 3.5MB
+    excluding file attachments.
+  version: 2.0.0
+  contact:
+    name: Global Relay
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
+  license:
+    name: Proprietary
+    url: https://www.globalrelay.com/legal/
+servers:
+  - url: https://voice.api.globalrelay.com/v2
+    description: Production server
+security:
+  - BearerAuth: []
+paths:
+  /voice:
+    post:
+      operationId: archiveVoiceRecord
+      summary: Archive a voice or video recording
+      description: >-
+        Archives a voice or video call recording to the Global Relay Archive.
+        Each request must include a unique requestId (UUID). Audio and video
+        files must be uploaded via the /files endpoint before being referenced
+        in this request. The maximum data payload is 3.5MB excluding file
+        attachments.
+      tags:
+        - Voice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceRequest'
+      responses:
+        '200':
+          description: Voice record archived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoiceResponse'
+        '400':
+          description: Bad request - invalid voice data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /files:
+    post:
+      operationId: uploadVoiceFile
+      summary: Upload a voice or video file
+      description: >-
+        Uploads an audio or video file to be referenced in a voice archive
+        request. Files must be uploaded before they are referenced in a /voice
+        request.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadRequest'
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+        '400':
+          description: Bad request - invalid file data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Client Credentials grant. Obtain a token from
+        https://iam-oauth2.globalrelay.com/oauth2/token with
+        grant_type=client_credentials and scope=openid voice.
+  schemas:
+    VoiceRequest:
+      type: object
+      required:
+        - requestId
+        - voiceRecord
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        voiceRecord:
+          $ref: '#/components/schemas/VoiceRecord'
+    VoiceRecord:
+      type: object
+      required:
+        - callId
+        - callType
+        - startTime
+        - endTime
+        - participants
+      properties:
+        callId:
+          type: string
+          description: Unique identifier for the call or meeting
+        callType:
+          type: string
+          description: Type of voice/video communication
+          enum:
+            - VoiceCall
+            - VideoCall
+            - Conference
+            - Meeting
+            - Webinar
+        title:
+          type: string
+          description: Title or subject of the call or meeting
+        startTime:
+          type: string
+          format: date-time
+          description: Start time of the call in ISO 8601 format
+        endTime:
+          type: string
+          format: date-time
+          description: End time of the call in ISO 8601 format
+        duration:
+          type: integer
+          description: Duration in seconds
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        fileIds:
+          type: array
+          items:
+            type: string
+          description: IDs of audio/video files uploaded via /files endpoint
+        transcript:
+          type: string
+          description: Text transcript of the call if available
+    Participant:
+      type: object
+      required:
+        - participantId
+        - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+        role:
+          type: string
+          description: Role in the call
+          enum:
+            - Host
+            - Presenter
+            - Attendee
+            - Caller
+            - Callee
+    VoiceResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        callId:
+          type: string
+          description: ID of the archived voice record
+    FileUploadRequest:
+      type: object
+      required:
+        - file
+        - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The audio or video file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file (e.g., audio/wav, video/mp4)
+    FileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: ID of the uploaded file
+        status:
+          type: string
+          description: Status of the file upload
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+tags:
+  - name: Voice
+    description: Endpoints for archiving voice and video recordings
+  - name: Files
+    description: Endpoints for uploading audio and video files

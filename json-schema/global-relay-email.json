@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-email.json",
+  "title": "Global Relay Email",
+  "description": "An email message archived in the Global Relay Archive, including headers, body content, recipients, and attachment references.",
+  "type": "object",
+  "required": [
+    "from",
+    "to",
+    "subject",
+    "sentDate"
+  ],
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique message identifier"
+    },
+    "from": {
+      "$ref": "global-relay-email-address.json",
+      "description": "Sender of the email"
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "$ref": "global-relay-email-address.json"
+      },
+      "description": "List of To recipients"
+    },
+    "cc": {
+      "type": "array",
+      "items": {
+        "$ref": "global-relay-email-address.json"
+      },
+      "description": "List of CC recipients"
+    },
+    "bcc": {
+      "type": "array",
+      "items": {
+        "$ref": "global-relay-email-address.json"
+      },
+      "description": "List of BCC recipients"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "sentDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the email was sent"
+    },
+    "receivedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the email was received"
+    },
+    "body": {
+      "type": "object",
+      "description": "Email body content",
+      "properties": {
+        "contentType": {
+          "type": "string",
+          "description": "MIME type of the body content",
+          "enum": [
+            "text/plain",
+            "text/html"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "description": "Body content"
+        }
+      }
+    },
+    "headers": {
+      "type": "array",
+      "description": "Email headers",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Header name"
+          },
+          "value": {
+            "type": "string",
+            "description": "Header value"
+          }
+        }
+      }
+    },
+    "attachmentIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of attachments uploaded via /files endpoint"
+    }
+  }
+}

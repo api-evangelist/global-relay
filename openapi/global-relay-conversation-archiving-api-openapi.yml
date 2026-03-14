@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  title: Global Relay Conversation Archiving API
+  description: >-
+    The Global Relay Conversation Archiving API provides a RESTful interface to
+    seamlessly integrate messaging platforms with the Global Relay Archive. It
+    enables secure capture and preservation of one-to-one or multi-party
+    conversations, including text messages, file attachments, reactions, edits,
+    and deletions. The API supports all conversation events and provides
+    guardrails and flexibility to efficiently automate the archiving process and
+    meet compliance requirements. Authentication uses the Client Credentials
+    OAuth 2.0 grant type with Bearer tokens.
+  version: 2.0.0
+  contact:
+    name: Global Relay
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  license:
+    name: Proprietary
+    url: https://www.globalrelay.com/legal/
+servers:
+  - url: https://conversations.api.globalrelay.com/v2
+    description: Production server
+security:
+  - BearerAuth: []
+paths:
+  /conversations:
+    post:
+      operationId: archiveConversation
+      summary: Archive a conversation
+      description: >-
+        Archives a conversation to the Global Relay Archive. Each request must
+        include a unique requestId (UUID). Conversations can include messages,
+        replies, reactions, edits, deletions, participant joins/leaves, and file
+        transfer events. File attachments must be uploaded via the /files
+        endpoint before being referenced here. Rate limited to 1000 requests
+        per minute.
+      tags:
+        - Conversations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConversationRequest'
+      responses:
+        '200':
+          description: Conversation archived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationResponse'
+        '400':
+          description: Bad request - invalid conversation data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded - max 1000 requests per minute
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /files:
+    post:
+      operationId: uploadFile
+      summary: Upload a file attachment
+      description: >-
+        Uploads a file attachment to be referenced in a conversation archive
+        request. Files must be uploaded before they are referenced in a
+        /conversations request with the File_transfer eventType. Rate limited
+        to 100 requests per minute.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadRequest'
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+        '400':
+          description: Bad request - invalid file data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded - max 100 requests per minute
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Client Credentials grant. Obtain a token from
+        https://iam-oauth2.globalrelay.com/oauth2/token with
+        grant_type=client_credentials and scope=openid conversation.
+  schemas:
+    ConversationRequest:
+      type: object
+      required:
+        - requestId
+        - conversation
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        conversation:
+          $ref: '#/components/schemas/Conversation'
+    Conversation:
+      type: object
+      required:
+        - conversationId
+        - channelType
+        - events
+      properties:
+        conversationId:
+          type: string
+          description: Unique identifier for the conversation
+        channelType:
+          type: string
+          description: The type of messaging channel
+          enum:
+            - IM
+            - GroupChat
+            - Channel
+            - SMS
+            - MMS
+            - Other
+        title:
+          type: string
+          description: Title or subject of the conversation
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    Participant:
+      type: object
+      required:
+        - participantId
+        - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+    Event:
+      type: object
+      required:
+        - eventType
+        - timestamp
+      properties:
+        eventType:
+          type: string
+          description: Type of conversation event
+          enum:
+            - Message
+            - Reply
+            - Reaction
+            - Edit
+            - Delete
+            - File_transfer
+            - Participant_join
+            - Participant_leave
+            - Call_start
+            - Call_end
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the event in ISO 8601 format
+        sender:
+          $ref: '#/components/schemas/Participant'
+        body:
+          type: string
+          description: Content body of the event
+        fileIds:
+          type: array
+          items:
+            type: string
+          description: IDs of files uploaded via /files endpoint
+        referencedEventId:
+          type: string
+          description: ID of the event being replied to, edited, or deleted
+    ConversationResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        conversationId:
+          type: string
+          description: ID of the archived conversation
+    FileUploadRequest:
+      type: object
+      required:
+        - file
+        - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file
+    FileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: ID of the uploaded file
+        status:
+          type: string
+          description: Status of the file upload
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+tags:
+  - name: Conversations
+    description: Endpoints for archiving conversations
+  - name: Files
+    description: Endpoints for uploading file attachments

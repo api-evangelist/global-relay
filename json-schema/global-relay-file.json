@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-file.json",
+  "title": "Global Relay File",
+  "description": "A file attachment uploaded to the Global Relay Archive, referenced by conversations, emails, voice records, or event cards.",
+  "type": "object",
+  "required": [
+    "fileId"
+  ],
+  "properties": {
+    "fileId": {
+      "type": "string",
+      "description": "Unique identifier for the file"
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Original filename"
+    },
+    "contentType": {
+      "type": "string",
+      "description": "MIME type of the file"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the file upload"
+    }
+  }
+}

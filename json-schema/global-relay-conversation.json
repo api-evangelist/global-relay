@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-conversation.json",
+  "title": "Global Relay Conversation",
+  "description": "A conversation archived in the Global Relay Archive, representing a one-to-one or multi-party messaging exchange including messages, reactions, edits, and file transfers.",
+  "type": "object",
+  "required": [
+    "conversationId",
+    "channelType",
+    "events"
+  ],
+  "properties": {
+    "conversationId": {
+      "type": "string",
+      "description": "Unique identifier for the conversation"
+    },
+    "channelType": {
+      "type": "string",
+      "description": "The type of messaging channel",
+      "enum": [
+        "IM",
+        "GroupChat",
+        "Channel",
+        "SMS",
+        "MMS",
+        "Other"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Title or subject of the conversation"
+    },
+    "participants": {
+      "type": "array",
+      "description": "List of participants in the conversation",
+      "items": {
+        "$ref": "global-relay-participant.json"
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "List of events in the conversation",
+      "items": {
+        "$ref": "global-relay-event.json"
+      }
+    }
+  }
+}

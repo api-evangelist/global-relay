@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-participant.json",
+  "title": "Global Relay Participant",
+  "description": "A participant in a conversation, email, voice call, or event within the Global Relay Archive.",
+  "type": "object",
+  "required": [
+    "participantId",
+    "displayName"
+  ],
+  "properties": {
+    "participantId": {
+      "type": "string",
+      "description": "Unique identifier for the participant"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name of the participant"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the participant"
+    },
+    "role": {
+      "type": "string",
+      "description": "Role of the participant",
+      "enum": [
+        "Host",
+        "Presenter",
+        "Attendee",
+        "Caller",
+        "Callee",
+        "Sender",
+        "Recipient"
+      ]
+    }
+  }
+}

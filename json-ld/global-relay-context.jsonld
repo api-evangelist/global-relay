@@ -1,0 +1,97 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "gr": "https://developers.globalrelay.com/schema/",
+    "Conversation": "gr:Conversation",
+    "conversationId": "gr:conversationId",
+    "channelType": "gr:channelType",
+    "participants": {
+      "@id": "gr:participants",
+      "@type": "@id"
+    },
+    "events": {
+      "@id": "gr:events",
+      "@type": "@id"
+    },
+    "Participant": "gr:Participant",
+    "participantId": "gr:participantId",
+    "displayName": "schema:name",
+    "email": "schema:email",
+    "role": "gr:role",
+    "Event": "gr:Event",
+    "eventType": "gr:eventType",
+    "timestamp": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "sender": {
+      "@id": "gr:sender",
+      "@type": "@id"
+    },
+    "body": "schema:text",
+    "fileIds": "gr:fileIds",
+    "referencedEventId": "gr:referencedEventId",
+    "Email": "schema:EmailMessage",
+    "messageId": "gr:messageId",
+    "from": {
+      "@id": "schema:sender",
+      "@type": "@id"
+    },
+    "to": {
+      "@id": "schema:recipient",
+      "@type": "@id"
+    },
+    "cc": {
+      "@id": "gr:ccRecipient",
+      "@type": "@id"
+    },
+    "bcc": {
+      "@id": "gr:bccRecipient",
+      "@type": "@id"
+    },
+    "subject": "schema:about",
+    "sentDate": {
+      "@id": "schema:dateSent",
+      "@type": "schema:DateTime"
+    },
+    "receivedDate": {
+      "@id": "schema:dateReceived",
+      "@type": "schema:DateTime"
+    },
+    "EmailAddress": "gr:EmailAddress",
+    "address": "schema:email",
+    "VoiceRecord": "gr:VoiceRecord",
+    "callId": "gr:callId",
+    "callType": "gr:callType",
+    "startTime": {
+      "@id": "schema:startDate",
+      "@type": "schema:DateTime"
+    },
+    "endTime": {
+      "@id": "schema:endDate",
+      "@type": "schema:DateTime"
+    },
+    "duration": {
+      "@id": "schema:duration",
+      "@type": "schema:Integer"
+    },
+    "transcript": "gr:transcript",
+    "EventCard": "gr:EventCard",
+    "cardId": "gr:cardId",
+    "source": "gr:source",
+    "sections": {
+      "@id": "gr:sections",
+      "@type": "@id"
+    },
+    "Section": "gr:Section",
+    "sectionId": "gr:sectionId",
+    "author": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "File": "schema:MediaObject",
+    "fileId": "gr:fileId",
+    "fileName": "schema:name",
+    "contentType": "schema:encodingFormat"
+  }
+}

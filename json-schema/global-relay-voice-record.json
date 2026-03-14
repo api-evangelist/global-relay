@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-voice-record.json",
+  "title": "Global Relay Voice Record",
+  "description": "A voice or video call recording archived in the Global Relay Archive, including call metadata, participants, and references to audio/video files.",
+  "type": "object",
+  "required": [
+    "callId",
+    "callType",
+    "startTime",
+    "endTime",
+    "participants"
+  ],
+  "properties": {
+    "callId": {
+      "type": "string",
+      "description": "Unique identifier for the call or meeting"
+    },
+    "callType": {
+      "type": "string",
+      "description": "Type of voice/video communication",
+      "enum": [
+        "VoiceCall",
+        "VideoCall",
+        "Conference",
+        "Meeting",
+        "Webinar"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "description": "Title or subject of the call or meeting"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start time of the call in ISO 8601 format"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End time of the call in ISO 8601 format"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration in seconds"
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "$ref": "global-relay-participant.json"
+      },
+      "description": "List of call participants"
+    },
+    "fileIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of audio/video files uploaded via /files endpoint"
+    },
+    "transcript": {
+      "type": "string",
+      "description": "Text transcript of the call if available"
+    }
+  }
+}

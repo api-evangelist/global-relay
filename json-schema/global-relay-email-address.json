@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-email-address.json",
+  "title": "Global Relay Email Address",
+  "description": "An email address with optional display name used in Global Relay email archiving.",
+  "type": "object",
+  "required": [
+    "address"
+  ],
+  "properties": {
+    "address": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Display name associated with the email address"
+    }
+  }
+}

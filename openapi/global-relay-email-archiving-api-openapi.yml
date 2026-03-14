@@ -1,0 +1,270 @@
+openapi: 3.0.3
+info:
+  title: Global Relay Email Archiving API
+  description: >-
+    The Global Relay Email Archiving API provides a RESTful interface to capture
+    and archive email content and metadata into the Global Relay Archive. It
+    supports archiving emails with attachments, headers, and full message
+    structure. The API uses OAuth 2.0 Client Credentials authentication and
+    provides secure, compliant email archiving for regulated industries.
+  version: 2.0.0
+  contact:
+    name: Global Relay
+    url: https://developers.globalrelay.com/api/email-archiving-api/
+  license:
+    name: Proprietary
+    url: https://www.globalrelay.com/legal/
+servers:
+  - url: https://email.api.globalrelay.com/v2
+    description: Production server
+security:
+  - BearerAuth: []
+paths:
+  /email:
+    post:
+      operationId: archiveEmail
+      summary: Archive an email
+      description: >-
+        Archives an email message to the Global Relay Archive. Each request must
+        include a unique requestId (UUID). Emails can include headers, body
+        content, recipients, and references to file attachments uploaded via the
+        /files endpoint. Rate limited to 1000 requests per minute.
+      tags:
+        - Email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailRequest'
+      responses:
+        '200':
+          description: Email archived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmailResponse'
+        '400':
+          description: Bad request - invalid email data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded - max 1000 requests per minute
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /files:
+    post:
+      operationId: uploadEmailAttachment
+      summary: Upload an email attachment
+      description: >-
+        Uploads a file attachment to be referenced in an email archive request.
+        Files must be uploaded before they are referenced in an /email request.
+        Rate limited to 100 requests per minute.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadRequest'
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+        '400':
+          description: Bad request - invalid file data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded - max 100 requests per minute
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Client Credentials grant. Obtain a token from
+        https://iam-oauth2.globalrelay.com/oauth2/token with
+        grant_type=client_credentials and scope=openid email.
+  schemas:
+    EmailRequest:
+      type: object
+      required:
+        - requestId
+        - email
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        email:
+          $ref: '#/components/schemas/Email'
+    Email:
+      type: object
+      required:
+        - from
+        - to
+        - subject
+        - sentDate
+      properties:
+        messageId:
+          type: string
+          description: Unique message identifier
+        from:
+          $ref: '#/components/schemas/EmailAddress'
+        to:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailAddress'
+          description: List of To recipients
+        cc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailAddress'
+          description: List of CC recipients
+        bcc:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailAddress'
+          description: List of BCC recipients
+        subject:
+          type: string
+          description: Email subject line
+        sentDate:
+          type: string
+          format: date-time
+          description: Date and time the email was sent
+        receivedDate:
+          type: string
+          format: date-time
+          description: Date and time the email was received
+        body:
+          $ref: '#/components/schemas/EmailBody'
+        headers:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailHeader'
+          description: Email headers
+        attachmentIds:
+          type: array
+          items:
+            type: string
+          description: IDs of attachments uploaded via /files endpoint
+    EmailAddress:
+      type: object
+      required:
+        - address
+      properties:
+        address:
+          type: string
+          format: email
+          description: Email address
+        displayName:
+          type: string
+          description: Display name
+    EmailBody:
+      type: object
+      properties:
+        contentType:
+          type: string
+          description: MIME type of the body content
+          enum:
+            - text/plain
+            - text/html
+        content:
+          type: string
+          description: Body content
+    EmailHeader:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Header name
+        value:
+          type: string
+          description: Header value
+    EmailResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        messageId:
+          type: string
+          description: ID of the archived email
+    FileUploadRequest:
+      type: object
+      required:
+        - file
+        - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file
+    FileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: ID of the uploaded file
+        status:
+          type: string
+          description: Status of the file upload
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+tags:
+  - name: Email
+    description: Endpoints for archiving email messages
+  - name: Files
+    description: Endpoints for uploading email attachments

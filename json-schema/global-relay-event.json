@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "global-relay-event.json",
+  "title": "Global Relay Event",
+  "description": "An event within a conversation, representing a message, reply, reaction, edit, deletion, file transfer, or participant action in the Global Relay Archive.",
+  "type": "object",
+  "required": [
+    "eventType",
+    "timestamp"
+  ],
+  "properties": {
+    "eventType": {
+      "type": "string",
+      "description": "Type of conversation event",
+      "enum": [
+        "Message",
+        "Reply",
+        "Reaction",
+        "Edit",
+        "Delete",
+        "File_transfer",
+        "Participant_join",
+        "Participant_leave",
+        "Call_start",
+        "Call_end"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the event in ISO 8601 format"
+    },
+    "sender": {
+      "$ref": "global-relay-participant.json",
+      "description": "The participant who triggered this event"
+    },
+    "body": {
+      "type": "string",
+      "description": "Content body of the event"
+    },
+    "fileIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of files uploaded via /files endpoint"
+    },
+    "referencedEventId": {
+      "type": "string",
+      "description": "ID of the event being replied to, edited, or deleted"
+    }
+  }
+}

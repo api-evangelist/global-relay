@@ -1,0 +1,291 @@
+openapi: 3.0.3
+info:
+  title: Global Relay Event Archiving API
+  description: >-
+    The Global Relay Event Archiving API (EventFeed) provides a RESTful
+    interface to integrate collaboration platforms, customer experience tools,
+    and social media sites with the Global Relay Archive. It enables secure
+    capture of event-based data including posts, comments, reactions, and
+    activity feeds from various digital channels for compliance and regulatory
+    archiving. Authentication uses the Client Credentials OAuth 2.0 grant type
+    with Bearer tokens.
+  version: 2.0.0
+  contact:
+    name: Global Relay
+    url: https://developers.globalrelay.com/api/event-archiving-api/
+  license:
+    name: Proprietary
+    url: https://www.globalrelay.com/legal/
+servers:
+  - url: https://events.api.globalrelay.com/v2
+    description: Production server
+security:
+  - BearerAuth: []
+paths:
+  /events:
+    post:
+      operationId: archiveEvent
+      summary: Archive an event card
+      description: >-
+        Archives an event card to the Global Relay Archive. Events are
+        structured as cards containing one or more sections, each with
+        individual events. Each request must include a unique requestId (UUID).
+        File attachments must be uploaded via the /files endpoint before being
+        referenced here.
+      tags:
+        - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequest'
+      responses:
+        '200':
+          description: Event archived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponse'
+        '400':
+          description: Bad request - invalid event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /files:
+    post:
+      operationId: uploadEventFile
+      summary: Upload a file attachment for an event
+      description: >-
+        Uploads a file attachment to be referenced in an event archive request.
+        Files must be uploaded before they are referenced in an /events request.
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadRequest'
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+        '400':
+          description: Bad request - invalid file data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 Client Credentials grant. Obtain a token from
+        https://iam-oauth2.globalrelay.com/oauth2/token with
+        grant_type=client_credentials and scope=openid event.
+  schemas:
+    EventRequest:
+      type: object
+      required:
+        - requestId
+        - card
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        card:
+          $ref: '#/components/schemas/Card'
+    Card:
+      type: object
+      required:
+        - cardId
+        - channelType
+        - sections
+      properties:
+        cardId:
+          type: string
+          description: Unique identifier for the event card
+        channelType:
+          type: string
+          description: The type of digital channel
+          enum:
+            - SocialMedia
+            - Collaboration
+            - CustomerExperience
+            - Website
+            - Other
+        title:
+          type: string
+          description: Title of the event card
+        source:
+          type: string
+          description: Source platform name
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+    Section:
+      type: object
+      required:
+        - sectionId
+        - events
+      properties:
+        sectionId:
+          type: string
+          description: Unique identifier for the section
+        title:
+          type: string
+          description: Title of the section
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    Event:
+      type: object
+      required:
+        - eventType
+        - timestamp
+      properties:
+        eventType:
+          type: string
+          description: Type of event
+          enum:
+            - Post
+            - Comment
+            - Reply
+            - Reaction
+            - Share
+            - Edit
+            - Delete
+            - Like
+            - Follow
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the event in ISO 8601 format
+        author:
+          $ref: '#/components/schemas/Author'
+        body:
+          type: string
+          description: Content body of the event
+        fileIds:
+          type: array
+          items:
+            type: string
+          description: IDs of files uploaded via /files endpoint
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional metadata key-value pairs
+    Author:
+      type: object
+      required:
+        - authorId
+        - displayName
+      properties:
+        authorId:
+          type: string
+          description: Unique identifier for the author
+        displayName:
+          type: string
+          description: Display name of the author
+        email:
+          type: string
+          format: email
+          description: Email address of the author
+        profileUrl:
+          type: string
+          format: uri
+          description: Profile URL of the author
+    EventResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        cardId:
+          type: string
+          description: ID of the archived event card
+    FileUploadRequest:
+      type: object
+      required:
+        - file
+        - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file
+    FileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: ID of the uploaded file
+        status:
+          type: string
+          description: Status of the file upload
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+tags:
+  - name: Events
+    description: Endpoints for archiving event cards
+  - name: Files
+    description: Endpoints for uploading file attachments
