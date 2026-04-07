@@ -5,8 +5,8 @@ apis:
   - aid: global-relay:conversation-archiving-api
     name: Global Relay Conversation Archiving API
     tags:
-      - Compliance
       - Archiving
+      - Compliance
       - Messaging
     humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
     properties:
@@ -25,8 +25,8 @@ apis:
   - aid: global-relay:email-archiving-api
     name: Global Relay Email Archiving API
     tags:
-      - Compliance
       - Archiving
+      - Compliance
       - Email
     humanURL: https://developers.globalrelay.com/api/email-archiving-api/
     properties:
@@ -43,8 +43,8 @@ apis:
   - aid: global-relay:voice-archiving-api
     name: Global Relay Voice Archiving API
     tags:
-      - Compliance
       - Archiving
+      - Compliance
       - Voice
     humanURL: https://developers.globalrelay.com/api/voice-archiving-api/
     properties:
@@ -61,10 +61,10 @@ apis:
   - aid: global-relay:event-archiving-api
     name: Global Relay Event Archiving API
     tags:
-      - Compliance
       - Archiving
-      - Social Media
       - Collaboration
+      - Compliance
+      - Social Media
     humanURL: https://developers.globalrelay.com/api/event-archiving-api/
     properties:
       - url: https://developers.globalrelay.com/api/event-archiving-api/
@@ -79,10 +79,10 @@ apis:
       activity feeds from various digital channels for compliance archiving.
 name: Global Relay
 tags:
-  - Compliance
   - Archiving
-  - Email Security
+  - Compliance
   - Data Retention
+  - Email Security
   - Regulatory Compliance
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg

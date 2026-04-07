@@ -255,7 +255,7 @@ components:
           format: uuid
           description: Request ID for troubleshooting
 tags:
-  - name: Voice
-    description: Endpoints for archiving voice and video recordings
   - name: Files
     description: Endpoints for uploading audio and video files
+  - name: Voice
+    description: Endpoints for archiving voice and video recordings
