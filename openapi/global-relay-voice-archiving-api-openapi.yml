@@ -25,7 +25,7 @@ paths:
   /voice:
     post:
       operationId: archiveVoiceRecord
-      summary: Archive a voice or video recording
+      summary: Global Relay Archive a voice or video recording
       description: >-
         Archives a voice or video call recording to the Global Relay Archive.
         Each request must include a unique requestId (UUID). Audio and video
@@ -68,7 +68,7 @@ paths:
   /files:
     post:
       operationId: uploadVoiceFile
-      summary: Upload a voice or video file
+      summary: Global Relay Upload a voice or video file
       description: >-
         Uploads an audio or video file to be referenced in a voice archive
         request. Files must be uploaded before they are referenced in a /voice

@@ -26,7 +26,7 @@ paths:
   /conversations:
     post:
       operationId: archiveConversation
-      summary: Archive a conversation
+      summary: Global Relay Archive a conversation
       description: >-
         Archives a conversation to the Global Relay Archive. Each request must
         include a unique requestId (UUID). Conversations can include messages,
@@ -70,7 +70,7 @@ paths:
   /files:
     post:
       operationId: uploadFile
-      summary: Upload a file attachment
+      summary: Global Relay Upload a file attachment
       description: >-
         Uploads a file attachment to be referenced in a conversation archive
         request. Files must be uploaded before they are referenced in a

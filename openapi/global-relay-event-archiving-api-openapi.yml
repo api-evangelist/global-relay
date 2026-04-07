@@ -25,7 +25,7 @@ paths:
   /events:
     post:
       operationId: archiveEvent
-      summary: Archive an event card
+      summary: Global Relay Archive an event card
       description: >-
         Archives an event card to the Global Relay Archive. Events are
         structured as cards containing one or more sections, each with
@@ -68,7 +68,7 @@ paths:
   /files:
     post:
       operationId: uploadEventFile
-      summary: Upload a file attachment for an event
+      summary: Global Relay Upload a file attachment for an event
       description: >-
         Uploads a file attachment to be referenced in an event archive request.
         Files must be uploaded before they are referenced in an /events request.

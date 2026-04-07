@@ -23,7 +23,7 @@ paths:
   /email:
     post:
       operationId: archiveEmail
-      summary: Archive an email
+      summary: Global Relay Archive an email
       description: >-
         Archives an email message to the Global Relay Archive. Each request must
         include a unique requestId (UUID). Emails can include headers, body
@@ -65,7 +65,7 @@ paths:
   /files:
     post:
       operationId: uploadEmailAttachment
-      summary: Upload an email attachment
+      summary: Global Relay Upload an email attachment
       description: >-
         Uploads a file attachment to be referenced in an email archive request.
         Files must be uploaded before they are referenced in an /email request.
