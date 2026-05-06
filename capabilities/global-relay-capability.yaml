@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Global Relay Conversation Archiving API
+  description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging
+    platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations,
+    including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and
+    provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication
+    uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
+  tags:
+  - Global
+  - Relay
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: global-relay
+    baseUri: https://conversations.api.globalrelay.com/v2
+    description: Global Relay Conversation Archiving API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{GLOBAL_RELAY_TOKEN}}'
+    resources:
+    - name: conversations
+      path: /conversations
+      operations:
+      - name: archiveconversation
+        method: POST
+        description: Global Relay Archive a conversation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: files
+      path: /files
+      operations:
+      - name: uploadfile
+        method: POST
+        description: Global Relay Upload a file attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: global-relay-rest
+    description: REST adapter for Global Relay Conversation Archiving API.
+    resources:
+    - path: /conversations
+      name: archiveconversation
+      operations:
+      - method: POST
+        name: archiveconversation
+        description: Global Relay Archive a conversation
+        call: global-relay.archiveconversation
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /files
+      name: uploadfile
+      operations:
+      - method: POST
+        name: uploadfile
+        description: Global Relay Upload a file attachment
+        call: global-relay.uploadfile
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: global-relay-mcp
+    transport: http
+    description: MCP adapter for Global Relay Conversation Archiving API for AI agent use.
+    tools:
+    - name: archiveconversation
+      description: Global Relay Archive a conversation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: global-relay.archiveconversation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: uploadfile
+      description: Global Relay Upload a file attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: global-relay.uploadfile
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    GLOBAL_RELAY_TOKEN: GLOBAL_RELAY_TOKEN
