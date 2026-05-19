@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Global Relay Event Archiving API — Events
+  description: 'Global Relay Event Archiving API — Events. 1 operations. Lead operation: Global Relay Archive an event card.
+    Self-contained Naftiko capability covering one Global Relay business surface.'
+  tags:
+  - Global Relay
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GLOBAL_RELAY_API_KEY: GLOBAL_RELAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: event-archiving-events
+    baseUri: https://events.api.globalrelay.com/v2
+    description: Global Relay Event Archiving API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: events
+      path: /events
+      operations:
+      - name: archiveevent
+        method: POST
+        description: Global Relay Archive an event card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.GLOBAL_RELAY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: event-archiving-events-rest
+    port: 8080
+    description: REST adapter for Global Relay Event Archiving API — Events. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/events
+      name: events
+      description: REST surface for events.
+      operations:
+      - method: POST
+        name: archiveevent
+        description: Global Relay Archive an event card
+        call: event-archiving-events.archiveevent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: event-archiving-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Global Relay Event Archiving API — Events. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: global-relay-archive-event-card
+      description: Global Relay Archive an event card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: event-archiving-events.archiveevent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

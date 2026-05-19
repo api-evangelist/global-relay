@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Global Relay Email Archiving API — Email
+  description: 'Global Relay Email Archiving API — Email. 1 operations. Lead operation: Global Relay Archive an email. Self-contained
+    Naftiko capability covering one Global Relay business surface.'
+  tags:
+  - Global Relay
+  - Email
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GLOBAL_RELAY_API_KEY: GLOBAL_RELAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: email-archiving-email
+    baseUri: https://email.api.globalrelay.com/v2
+    description: Global Relay Email Archiving API — Email business capability. Self-contained, no shared references.
+    resources:
+    - name: email
+      path: /email
+      operations:
+      - name: archiveemail
+        method: POST
+        description: Global Relay Archive an email
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.GLOBAL_RELAY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: email-archiving-email-rest
+    port: 8080
+    description: REST adapter for Global Relay Email Archiving API — Email. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/email
+      name: email
+      description: REST surface for email.
+      operations:
+      - method: POST
+        name: archiveemail
+        description: Global Relay Archive an email
+        call: email-archiving-email.archiveemail
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: email-archiving-email-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Global Relay Email Archiving API — Email. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: global-relay-archive-email
+      description: Global Relay Archive an email
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: email-archiving-email.archiveemail
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
