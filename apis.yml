@@ -111,6 +111,8 @@ common:
     name: Voice Archiving
     type: Documentation
     description: 'null'
+  - type: LLMsTxt
+    url: https://globalrelay.com/llms.txt
 created: '2025-01-01'
 modified: '2026-05-19'
 position: Consumer
