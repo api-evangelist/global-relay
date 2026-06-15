@@ -1,0 +1,703 @@
+{
+  "item": [
+    {
+      "id": "5630c06b-c9fc-41a4-ade1-8e411aca363c",
+      "name": "Conversations",
+      "description": {
+        "content": "Endpoints for archiving conversations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b90fe27-51f7-488b-b66c-2234e255db3a",
+          "name": "Global Relay Archive a conversation",
+          "request": {
+            "name": "Global Relay Archive a conversation",
+            "description": {
+              "content": "Archives a conversation to the Global Relay Archive. Each request must include a unique requestId (UUID). Conversations can include messages, replies, reactions, edits, deletions, participant joins/leaves, and file transfer events. File attachments must be uploaded via the /files endpoint before being referenced here. Rate limited to 1000 requests per minute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5deac8d6-13c1-4bf1-8732-0f62d77e0ffa",
+              "name": "Conversation archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"65db6606-debe-0f26-4e98-23b786509fb9\",\n  \"status\": \"string\",\n  \"conversationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53b80b63-6329-4975-8186-e0c40cbcdd3c",
+              "name": "Bad request - invalid conversation data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"f3c3b2a9-ebc2-ec95-075f-4404be53ff87\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38e12f15-786d-4c91-8c62-77ed62f73e72",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"f3c3b2a9-ebc2-ec95-075f-4404be53ff87\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "993cefd6-f8b9-4f16-89a3-09808b0a98c9",
+              "name": "Rate limit exceeded - max 1000 requests per minute",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"f3c3b2a9-ebc2-ec95-075f-4404be53ff87\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1d24e85-fdb1-43e2-8b42-1e0db738311e",
+      "name": "Files",
+      "description": {
+        "content": "Endpoints for uploading file attachments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8cd26131-0186-4244-add1-9b58ea9397d2",
+          "name": "Global Relay Upload a file attachment",
+          "request": {
+            "name": "Global Relay Upload a file attachment",
+            "description": {
+              "content": "Uploads a file attachment to be referenced in a conversation archive request. Files must be uploaded before they are referenced in a /conversations request with the File_transfer eventType. Rate limited to 100 requests per minute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The file to upload"
+                },
+                {
+                  "key": "fileId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Unique identifier for the file"
+                },
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Original filename"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "MIME type of the file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d530f899-ea13-43ec-8275-a2de3e35e0ae",
+              "name": "File uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fileId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce832561-273b-47b1-96ed-b0749e9b68f5",
+              "name": "Bad request - invalid file data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"f3c3b2a9-ebc2-ec95-075f-4404be53ff87\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aac67327-fe83-4fe3-a99d-3785b4856096",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"f3c3b2a9-ebc2-ec95-075f-4404be53ff87\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80f4a52e-4a88-4b72-bad7-5e00bc5ef30e",
+              "name": "Rate limit exceeded - max 100 requests per minute",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"f3c3b2a9-ebc2-ec95-075f-4404be53ff87\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://conversations.api.globalrelay.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c41eeb5c-9012-4d26-92d8-072afdc5b255",
+    "name": "Global Relay Conversation Archiving API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.\n\nContact Support:\n Name: Global Relay",
+      "type": "text/plain"
+    }
+  }
+}

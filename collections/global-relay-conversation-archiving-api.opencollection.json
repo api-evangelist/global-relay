@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Global Relay Conversation Archiving API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Global Relay Archive a conversation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.api.globalrelay.com/v2/conversations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archives a conversation to the Global Relay Archive. Each request must include a unique requestId (UUID). Conversations can include messages, replies, reactions, edits, deletions, participant joins/leaves, and file transfer events. File attachments must be uploaded via the /files endpoint before being referenced here. Rate limited to 1000 requests per minute."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Global Relay Upload a file attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.api.globalrelay.com/v2/files",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads a file attachment to be referenced in a conversation archive request. Files must be uploaded before they are referenced in a /conversations request with the File_transfer eventType. Rate limited to 100 requests per minute."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

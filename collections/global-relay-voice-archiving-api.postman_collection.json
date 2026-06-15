@@ -1,0 +1,703 @@
+{
+  "item": [
+    {
+      "id": "39734860-4222-4270-b81b-6aa58e716c93",
+      "name": "Files",
+      "description": {
+        "content": "Endpoints for uploading audio and video files",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "28275572-a080-4dd0-9cc5-4ecc41182cda",
+          "name": "Global Relay Upload a voice or video file",
+          "request": {
+            "name": "Global Relay Upload a voice or video file",
+            "description": {
+              "content": "Uploads an audio or video file to be referenced in a voice archive request. Files must be uploaded before they are referenced in a /voice request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The audio or video file to upload"
+                },
+                {
+                  "key": "fileId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Unique identifier for the file"
+                },
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Original filename"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "MIME type of the file (e.g., audio/wav, video/mp4)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82a04a85-72cd-4bac-9210-4f88fb03872c",
+              "name": "File uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio or video file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file (e.g., audio/wav, video/mp4)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fileId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46c66a59-b7c5-43fc-a05d-3caaf2a23d87",
+              "name": "Bad request - invalid file data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio or video file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file (e.g., audio/wav, video/mp4)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2919495b-d698-3054-9dfc-245611ae18e3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d24cedb0-6dee-41c9-9abc-38f725e6825d",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio or video file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file (e.g., audio/wav, video/mp4)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2919495b-d698-3054-9dfc-245611ae18e3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95aa6595-83be-48eb-b1f8-f699dc67f8b1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The audio or video file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file (e.g., audio/wav, video/mp4)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2919495b-d698-3054-9dfc-245611ae18e3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "106c21cd-a52f-40e8-a114-c1a91e9c1084",
+      "name": "Voice",
+      "description": {
+        "content": "Endpoints for archiving voice and video recordings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79e0e810-cb91-46dd-b71c-620c1bbc17e4",
+          "name": "Global Relay Archive a voice or video recording",
+          "request": {
+            "name": "Global Relay Archive a voice or video recording",
+            "description": {
+              "content": "Archives a voice or video call recording to the Global Relay Archive. Each request must include a unique requestId (UUID). Audio and video files must be uploaded via the /files endpoint before being referenced in this request. The maximum data payload is 3.5MB excluding file attachments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39b79b70-4f2c-4436-9178-b40871b5307f",
+              "name": "Voice record archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"12e4d41d-8fe8-516e-6c4b-e10cf67a5ba8\",\n  \"status\": \"string\",\n  \"callId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0495c83a-7a46-422d-be7e-d3e35cfbae75",
+              "name": "Bad request - invalid voice data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2919495b-d698-3054-9dfc-245611ae18e3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21edfcc6-2640-4517-a07c-6e5b810b6d5b",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2919495b-d698-3054-9dfc-245611ae18e3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b6a332b-cbdc-4904-ad24-ce8aeb076c7c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2919495b-d698-3054-9dfc-245611ae18e3\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://voice.api.globalrelay.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f4a28903-aa60-49af-9313-38fa238a08ab",
+    "name": "Global Relay Voice Archiving API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Global Relay Voice Archiving API provides a RESTful interface to capture and archive audio and video files, including call recordings and meeting recordings, into the Global Relay Archive. The API ensures all voice and video communications are securely preserved for compliance and regulatory requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens. The maximum data payload per request is 3.5MB excluding file attachments.\n\nContact Support:\n Name: Global Relay",
+      "type": "text/plain"
+    }
+  }
+}

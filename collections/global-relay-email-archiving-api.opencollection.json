@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Global Relay Email Archiving API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Email",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Global Relay Archive an email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://email.api.globalrelay.com/v2/email",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archives an email message to the Global Relay Archive. Each request must include a unique requestId (UUID). Emails can include headers, body content, recipients, and references to file attachments uploaded via the /files endpoint. Rate limited to 1000 requests per minute."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Global Relay Upload an email attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://email.api.globalrelay.com/v2/files",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Uploads a file attachment to be referenced in an email archive request. Files must be uploaded before they are referenced in an /email request. Rate limited to 100 requests per minute."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

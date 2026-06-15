@@ -1,0 +1,703 @@
+{
+  "item": [
+    {
+      "id": "543014ec-5e32-4950-9bff-77304a008429",
+      "name": "Email",
+      "description": {
+        "content": "Endpoints for archiving email messages",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "19d9d42b-8cfa-4e8c-8981-b3566f95e000",
+          "name": "Global Relay Archive an email",
+          "request": {
+            "name": "Global Relay Archive an email",
+            "description": {
+              "content": "Archives an email message to the Global Relay Archive. Each request must include a unique requestId (UUID). Emails can include headers, body content, recipients, and references to file attachments uploaded via the /files endpoint. Rate limited to 1000 requests per minute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7162b63-5d4a-4abc-b66e-438f1bdd349a",
+              "name": "Email archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"21ba4882-57d3-fedd-9d4d-0ae3d5ad66d5\",\n  \"status\": \"string\",\n  \"messageId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac4d08d-abf7-403c-a519-7602c4581e55",
+              "name": "Bad request - invalid email data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2b6b2830-c26d-2978-d2ca-d1e624caace4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b917bae-f446-4d7d-a454-d56d4f855a68",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2b6b2830-c26d-2978-d2ca-d1e624caace4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "496fd685-ac96-4e98-aa1f-a6ac90c510ce",
+              "name": "Rate limit exceeded - max 1000 requests per minute",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2b6b2830-c26d-2978-d2ca-d1e624caace4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4f556e8d-f435-4aa9-89dd-4139c1b23caf",
+      "name": "Files",
+      "description": {
+        "content": "Endpoints for uploading email attachments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86115f9d-4cd6-4725-aa6d-f6f9d7e4cdf3",
+          "name": "Global Relay Upload an email attachment",
+          "request": {
+            "name": "Global Relay Upload an email attachment",
+            "description": {
+              "content": "Uploads a file attachment to be referenced in an email archive request. Files must be uploaded before they are referenced in an /email request. Rate limited to 100 requests per minute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "(Required) The file to upload"
+                },
+                {
+                  "key": "fileId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Unique identifier for the file"
+                },
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Original filename"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "MIME type of the file"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5b083f4-89d2-4b50-b3ff-56d652efe9d5",
+              "name": "File uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fileId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75154f42-8e8b-498d-bffc-ff46002023ee",
+              "name": "Bad request - invalid file data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2b6b2830-c26d-2978-d2ca-d1e624caace4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c08a5651-9aed-4e27-a34d-b27c7729518d",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2b6b2830-c26d-2978-d2ca-d1e624caace4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18468f4e-4796-4565-a8e6-ec709a1d6625",
+              "name": "Rate limit exceeded - max 100 requests per minute",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) Unique identifier for the file",
+                        "type": "text/plain"
+                      },
+                      "key": "fileId",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Original filename",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "MIME type of the file",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"2b6b2830-c26d-2978-d2ca-d1e624caace4\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://email.api.globalrelay.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a6c2f4e1-9616-44e7-abbc-6f7d005ba255",
+    "name": "Global Relay Email Archiving API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Global Relay Email Archiving API provides a RESTful interface to capture and archive email content and metadata into the Global Relay Archive. It supports archiving emails with attachments, headers, and full message structure. The API uses OAuth 2.0 Client Credentials authentication and provides secure, compliant email archiving for regulated industries.\n\nContact Support:\n Name: Global Relay",
+      "type": "text/plain"
+    }
+  }
+}
