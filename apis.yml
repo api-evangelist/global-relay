@@ -82,6 +82,12 @@ type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: TrustCenter
+    url: security/global-relay-trust-center.yml
+  - type: DomainSecurity
+    url: security/global-relay-domain-security.yml
+  - type: Authentication
+    url: authentication/global-relay-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/globalrelay
   - type: LinkedIn
@@ -104,6 +110,8 @@ common:
     description: 'null'
   - type: LlmsText
     url: https://globalrelay.com/llms.txt
+  - type: Blog
+    url: https://www.globalrelay.com/resources/blog/
 created: '2025-01-01'
 modified: '2026-05-19'
 position: Consumer

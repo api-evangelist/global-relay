@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/global-relay-conversation-archiving-api-openapi.yml, openapi/global-relay-email-archiving-api-openapi.yml,
+  openapi/global-relay-event-archiving-api-openapi.yml, openapi/global-relay-voice-archiving-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token
+    with grant_type=client_credentials and scope=openid conversation.
+  sources:
+  - openapi/global-relay-conversation-archiving-api-openapi.yml
+  - openapi/global-relay-email-archiving-api-openapi.yml
+  - openapi/global-relay-event-archiving-api-openapi.yml
+  - openapi/global-relay-voice-archiving-api-openapi.yml
