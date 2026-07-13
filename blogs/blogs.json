@@ -1,0 +1,21 @@
+{
+  "repo": "global-relay",
+  "feeds": [
+    {
+      "source": "https://www.globalrelay.com/resources/blog/",
+      "feed_url": "https://www.globalrelay.com/feed/",
+      "title": "",
+      "saved": 3,
+      "method": "discovered"
+    },
+    {
+      "source": "https://globalrelay.com/llms.txt",
+      "feed_url": "https://globalrelay.com/llms.txt",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 13
+}
