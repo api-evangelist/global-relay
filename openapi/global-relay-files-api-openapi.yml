@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: Global Relay Conversation Archiving Conversations Files API
+  description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
+  version: 2.0.0
+  contact:
+    name: Global Relay
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  license:
+    name: Proprietary
+    url: https://www.globalrelay.com/legal/
+servers:
+- url: https://conversations.api.globalrelay.com/v2
+  description: Production server
+security:
+- BearerAuth: []
+tags:
+- name: Files
+  description: Endpoints for uploading file attachments
+paths:
+  /files:
+    post:
+      operationId: uploadFile
+      summary: Global Relay Upload a file attachment
+      description: Uploads a file attachment to be referenced in a conversation archive request. Files must be uploaded before they are referenced in a /conversations request with the File_transfer eventType. Rate limited to 100 requests per minute.
+      tags:
+      - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadRequest'
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+        '400':
+          description: Bad request - invalid file data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded - max 100 requests per minute
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    FileUploadRequest:
+      type: object
+      required:
+      - file
+      - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    FileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: ID of the uploaded file
+        status:
+          type: string
+          description: Status of the file upload
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid conversation.
