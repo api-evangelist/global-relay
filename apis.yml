@@ -1,76 +1,91 @@
 aid: global-relay
 url: https://raw.githubusercontent.com/api-evangelist/global-relay/refs/heads/main/apis.yml
 apis:
-  - aid: global-relay:conversation-archiving-api
-    name: Global Relay Conversation Archiving API
-    tags:
-      - Archiving
-      - Compliance
-      - Messaging
-    humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
-    properties:
-      - url: https://developers.globalrelay.com/api/conversation-archiving-api/
-        type: Documentation
-      - url: openapi/global-relay-conversation-archiving-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging
-      platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party
-      conversations, including text messages, file attachments, reactions, edits, and deletions. The API uses OAuth 2.0
-      Client Credentials authentication and is rate limited to 1000 requests per minute for conversations and 100 per
-      minute for files.
-  - aid: global-relay:email-archiving-api
-    name: Global Relay Email Archiving API
-    tags:
-      - Archiving
-      - Compliance
-      - Email
-    humanURL: https://developers.globalrelay.com/api/email-archiving-api/
-    properties:
-      - url: https://developers.globalrelay.com/api/email-archiving-api/
-        type: Documentation
-      - url: openapi/global-relay-email-archiving-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Global Relay Email Archiving API provides a RESTful interface to capture and archive email content and
-      metadata into the Global Relay Archive. It supports archiving emails with attachments, headers, and full message
-      structure for compliance and regulatory requirements. Rate limited to 1000 requests per minute for emails and 100
-      per minute for files.
-  - aid: global-relay:voice-archiving-api
-    name: Global Relay Voice Archiving API
-    tags:
-      - Archiving
-      - Compliance
-      - Voice
-    humanURL: https://developers.globalrelay.com/api/voice-archiving-api/
-    properties:
-      - url: https://developers.globalrelay.com/api/voice-archiving-api/
-        type: Documentation
-      - url: openapi/global-relay-voice-archiving-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Global Relay Voice Archiving API provides a RESTful interface to capture and archive audio and video
-      recordings, including call recordings and meeting recordings, into the Global Relay Archive. The API ensures all
-      voice and video communications are securely preserved for compliance. The maximum data payload per request is
-      3.5MB excluding file attachments.
-  - aid: global-relay:event-archiving-api
-    name: Global Relay Event Archiving API
-    tags:
-      - Archiving
-      - Collaboration
-      - Compliance
-      - Social Media
-    humanURL: https://developers.globalrelay.com/api/event-archiving-api/
-    properties:
-      - url: https://developers.globalrelay.com/api/event-archiving-api/
-        type: Documentation
-      - url: openapi/global-relay-event-archiving-api-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Global Relay Event Archiving API (EventFeed) provides a RESTful interface to integrate collaboration
-      platforms, customer experience tools, and social media sites with the Global Relay Archive. It enables secure
-      capture of event-based data including posts, comments, reactions, and activity feeds from various digital channels
-      for compliance archiving.
+- aid: global-relay:global-relay-conversations-api
+  name: Global Relay Conversations API
+  description: Endpoints for archiving conversations
+  humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
+  tags:
+  - Conversations
+  properties:
+  - type: OpenAPI
+    url: openapi/global-relay-conversations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/email-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/event-archiving-api/
+- aid: global-relay:global-relay-email-api
+  name: Global Relay Email API
+  description: Endpoints for archiving email messages
+  humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
+  tags:
+  - Email
+  properties:
+  - type: OpenAPI
+    url: openapi/global-relay-email-api-openapi.yml
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/email-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/event-archiving-api/
+- aid: global-relay:global-relay-events-api
+  name: Global Relay Events API
+  description: Endpoints for archiving event cards
+  humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/global-relay-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/email-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/event-archiving-api/
+- aid: global-relay:global-relay-files-api
+  name: Global Relay Files API
+  description: Endpoints for uploading file attachments
+  humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/global-relay-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/email-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/event-archiving-api/
+- aid: global-relay:global-relay-voice-api
+  name: Global Relay Voice API
+  description: Endpoints for archiving voice and video recordings
+  humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
+  tags:
+  - Voice
+  properties:
+  - type: OpenAPI
+    url: openapi/global-relay-voice-api-openapi.yml
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/email-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
+  - type: Documentation
+    url: https://developers.globalrelay.com/api/event-archiving-api/
 name: Global Relay
 tags:
   - Archiving
@@ -79,7 +94,20 @@ tags:
   - Email Security
   - Regulatory Compliance
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/global-relay.png
 access: 3rd-Party
 common:
   - type: AgenticAccess
