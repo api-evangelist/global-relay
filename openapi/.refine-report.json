@@ -1,0 +1,22 @@
+{
+  "provider": "global-relay",
+  "sources": [
+    "global-relay-conversations-api-openapi.yml",
+    "global-relay-email-api-openapi.yml",
+    "global-relay-events-api-openapi.yml",
+    "global-relay-files-api-openapi.yml",
+    "global-relay-voice-api-openapi.yml"
+  ],
+  "outputs": [
+    "global-relay-conversations-api-openapi.yml",
+    "global-relay-email-api-openapi.yml",
+    "global-relay-events-api-openapi.yml",
+    "global-relay-files-api-openapi.yml",
+    "global-relay-voice-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
