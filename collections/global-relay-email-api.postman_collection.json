@@ -1,0 +1,293 @@
+{
+  "item": [
+    {
+      "id": "152eebe6-b5ee-48a0-8e0a-53d704ad89af",
+      "name": "Email",
+      "description": {
+        "content": "Endpoints for archiving email messages",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9782a9d-95bd-4467-8f02-1a81da6a532b",
+          "name": "Global Relay Archive an email",
+          "request": {
+            "name": "Global Relay Archive an email",
+            "description": {
+              "content": "Archives an email message to the Global Relay Archive. Each request must include a unique requestId (UUID). Emails can include headers, body content, recipients, and references to file attachments uploaded via the /files endpoint. Rate limited to 1000 requests per minute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e727d68-229e-4339-af2e-84fa10493686",
+              "name": "Email archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"9e6a41b1-4acd-5822-7d1f-16dff7782477\",\n  \"status\": \"string\",\n  \"messageId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4a4903c-066b-4a2c-8288-6466cbe72485",
+              "name": "Bad request - invalid email data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"ab86822c-60be-8d44-5148-0fe47f904569\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45a57dcf-ad72-4f06-bc43-b2a0d9afb65d",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"ab86822c-60be-8d44-5148-0fe47f904569\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db0053a8-3c41-4245-8f07-15b0ac3be17a",
+              "name": "Rate limit exceeded - max 1000 requests per minute",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"email\": {\n    \"from\": {\n      \"address\": \"<email>\",\n      \"displayName\": \"<string>\"\n    },\n    \"to\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"subject\": \"<string>\",\n    \"sentDate\": \"<dateTime>\",\n    \"messageId\": \"<string>\",\n    \"cc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"bcc\": [\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      },\n      {\n        \"address\": \"<email>\",\n        \"displayName\": \"<string>\"\n      }\n    ],\n    \"receivedDate\": \"<dateTime>\",\n    \"body\": {\n      \"contentType\": \"<string>\",\n      \"content\": \"<string>\"\n    },\n    \"headers\": [\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"attachmentIds\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"ab86822c-60be-8d44-5148-0fe47f904569\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://conversations.api.globalrelay.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c2c2a328-a958-4231-b2fc-20028b1493af",
+    "name": "Global Relay Conversation Archiving Conversations Email API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.\n\nContact Support:\n Name: Global Relay",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,293 @@
+{
+  "item": [
+    {
+      "id": "0b9162d5-6942-434e-beb0-dcc9e6c14593",
+      "name": "Conversations",
+      "description": {
+        "content": "Endpoints for archiving conversations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3f5a452e-e8de-4598-a5d5-408ac78c0f12",
+          "name": "Global Relay Archive a conversation",
+          "request": {
+            "name": "Global Relay Archive a conversation",
+            "description": {
+              "content": "Archives a conversation to the Global Relay Archive. Each request must include a unique requestId (UUID). Conversations can include messages, replies, reactions, edits, deletions, participant joins/leaves, and file transfer events. File attachments must be uploaded via the /files endpoint before being referenced here. Rate limited to 1000 requests per minute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conversations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb306504-f8d7-4de1-baf1-cac749537895",
+              "name": "Conversation archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"df855850-1b13-df20-3e91-eaaff9a15053\",\n  \"status\": \"string\",\n  \"conversationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c723723-8cd8-4612-a391-c6ea622044ac",
+              "name": "Bad request - invalid conversation data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"ab13c751-57dc-e167-ee80-a50eed88d1d8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c55a4bc7-36a3-4550-92de-b83faeff7424",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"ab13c751-57dc-e167-ee80-a50eed88d1d8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbab8762-8545-44b2-9e44-da57f76d154d",
+              "name": "Rate limit exceeded - max 1000 requests per minute",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conversations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"conversation\": {\n    \"conversationId\": \"<string>\",\n    \"channelType\": \"<string>\",\n    \"events\": [\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      },\n      {\n        \"eventType\": \"<string>\",\n        \"timestamp\": \"<dateTime>\",\n        \"sender\": {\n          \"participantId\": \"<string>\",\n          \"displayName\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"body\": \"<string>\",\n        \"fileIds\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"referencedEventId\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"ab13c751-57dc-e167-ee80-a50eed88d1d8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://conversations.api.globalrelay.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fdf38518-528b-40b8-8f1e-f3be20324b3b",
+    "name": "Global Relay Conversation Archiving Conversations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.\n\nContact Support:\n Name: Global Relay",
+      "type": "text/plain"
+    }
+  }
+}

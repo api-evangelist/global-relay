@@ -1,0 +1,293 @@
+{
+  "item": [
+    {
+      "id": "04e763b9-2fb6-4cea-8d0e-33719e16d026",
+      "name": "Voice",
+      "description": {
+        "content": "Endpoints for archiving voice and video recordings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6fa7260-fe4b-4a6d-b850-bd45d2026f6b",
+          "name": "Global Relay Archive a voice or video recording",
+          "request": {
+            "name": "Global Relay Archive a voice or video recording",
+            "description": {
+              "content": "Archives a voice or video call recording to the Global Relay Archive. Each request must include a unique requestId (UUID). Audio and video files must be uploaded via the /files endpoint before being referenced in this request. The maximum data payload is 3.5MB excluding file attachments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d1a5641-a2c7-4536-8eef-7576bce73e2f",
+              "name": "Voice record archived successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"76c2cacc-8a4a-fe79-2dff-3ef68415dc79\",\n  \"status\": \"string\",\n  \"callId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd66aa35-7514-44ac-87e1-365a31f7ff7f",
+              "name": "Bad request - invalid voice data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"649bc227-ab8e-f302-371e-1fd6817102e9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c90ab09-1762-4345-99d7-99d1f67f9515",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"649bc227-ab8e-f302-371e-1fd6817102e9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d5b4189-f2ef-4e9e-aff6-9664f5fee6f4",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<uuid>\",\n  \"voiceRecord\": {\n    \"callId\": \"<string>\",\n    \"callType\": \"<string>\",\n    \"startTime\": \"<dateTime>\",\n    \"endTime\": \"<dateTime>\",\n    \"participants\": [\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      },\n      {\n        \"participantId\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"email\": \"<email>\",\n        \"role\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"duration\": \"<integer>\",\n    \"fileIds\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transcript\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"requestId\": \"649bc227-ab8e-f302-371e-1fd6817102e9\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://conversations.api.globalrelay.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "27787b14-8a0b-4f69-9e74-db0c047963ce",
+    "name": "Global Relay Conversation Archiving Conversations Voice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.\n\nContact Support:\n Name: Global Relay",
+      "type": "text/plain"
+    }
+  }
+}

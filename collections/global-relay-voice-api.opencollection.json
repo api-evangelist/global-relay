@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Global Relay Conversation Archiving Conversations Voice API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Global Relay Archive a voice or video recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://conversations.api.globalrelay.com/v2/voice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archives a voice or video call recording to the Global Relay Archive. Each request must include a unique requestId (UUID). Audio and video files must be uploaded via the /files endpoint before being referenced in this request. The maximum data payload is 3.5MB excluding file attachments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
