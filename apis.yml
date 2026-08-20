@@ -40,6 +40,8 @@ apis:
   description: Endpoints for archiving event cards
   humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -57,6 +59,8 @@ apis:
   description: Endpoints for uploading file attachments
   humanURL: https://developers.globalrelay.com/api/conversation-archiving-api/
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
