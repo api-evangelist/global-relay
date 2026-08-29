@@ -1,22 +1,34 @@
 {
   "provider": "global-relay",
   "sources": [
-    "global-relay-conversations-api-openapi.yml",
-    "global-relay-email-api-openapi.yml",
-    "global-relay-events-api-openapi.yml",
-    "global-relay-files-api-openapi.yml",
-    "global-relay-voice-api-openapi.yml"
+    "_original/global-relay-conversation-archiving-api-openapi.yml",
+    "_original/global-relay-email-archiving-api-openapi.yml",
+    "_original/global-relay-event-archiving-api-openapi.yml",
+    "_original/global-relay-voice-archiving-api-openapi.yml"
   ],
   "outputs": [
     "global-relay-conversations-api-openapi.yml",
+    "global-relay-files-api-openapi.yml",
     "global-relay-email-api-openapi.yml",
     "global-relay-events-api-openapi.yml",
-    "global-relay-files-api-openapi.yml",
     "global-relay-voice-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "global-relay-conversation-archiving-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "global-relay-email-archiving-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "global-relay-event-archiving-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "global-relay-voice-archiving-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tag 'Files' spans 4 source specs (global-relay-conversation-archiving-api-openapi.yml, global-relay-email-archiving-api-openapi.yml, global-relay-event-archiving-api-openapi.yml, global-relay-voice-archiving-api-openapi.yml): per-path servers applied"
+  ],
+  "skipped": [
+    "global-relay-conversations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "global-relay-email-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "global-relay-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "global-relay-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "global-relay-voice-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

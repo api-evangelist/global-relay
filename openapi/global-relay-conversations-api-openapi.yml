@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Global Relay Conversation Archiving Conversations API
   description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
@@ -58,6 +58,47 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    Participant:
+      type: object
+      required:
+      - participantId
+      - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+    ConversationRequest:
+      type: object
+      required:
+      - requestId
+      - conversation
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        conversation:
+          $ref: '#/components/schemas/Conversation'
     Conversation:
       type: object
       required:
@@ -89,19 +130,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
     Event:
       type: object
       required:
@@ -139,18 +167,6 @@ components:
         referencedEventId:
           type: string
           description: ID of the event being replied to, edited, or deleted
-    ConversationRequest:
-      type: object
-      required:
-      - requestId
-      - conversation
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        conversation:
-          $ref: '#/components/schemas/Conversation'
     ConversationResponse:
       type: object
       properties:
@@ -163,22 +179,6 @@ components:
         conversationId:
           type: string
           description: ID of the archived conversation
-    Participant:
-      type: object
-      required:
-      - participantId
-      - displayName
-      properties:
-        participantId:
-          type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
   securitySchemes:
     BearerAuth:
       type: http

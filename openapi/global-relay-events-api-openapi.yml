@@ -1,16 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Global Relay Conversation Archiving Conversations Events API
-  description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
+  title: Global Relay Event Archiving Events API
+  description: The Global Relay Event Archiving API (EventFeed) provides a RESTful interface to integrate collaboration platforms, customer experience tools, and social media sites with the Global Relay Archive. It enables secure capture of event-based data including posts, comments, reactions, and activity feeds from various digital channels for compliance and regulatory archiving. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
   version: 2.0.0
   contact:
     name: Global Relay
-    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+    url: https://developers.globalrelay.com/api/event-archiving-api/
   license:
     name: Proprietary
     url: https://www.globalrelay.com/legal/
 servers:
-- url: https://conversations.api.globalrelay.com/v2
+- url: https://events.api.globalrelay.com/v2
   description: Production server
 security:
 - BearerAuth: []
@@ -58,18 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    EventResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        cardId:
-          type: string
-          description: ID of the archived event card
     ErrorResponse:
       type: object
       properties:
@@ -83,47 +71,6 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    EventRequest:
-      type: object
-      required:
-      - requestId
-      - card
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        card:
-          $ref: '#/components/schemas/Card'
-    Card:
-      type: object
-      required:
-      - cardId
-      - channelType
-      - sections
-      properties:
-        cardId:
-          type: string
-          description: Unique identifier for the event card
-        channelType:
-          type: string
-          description: The type of digital channel
-          enum:
-          - SocialMedia
-          - Collaboration
-          - CustomerExperience
-          - Website
-          - Other
-        title:
-          type: string
-          description: Title of the event card
-        source:
-          type: string
-          description: Source platform name
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
     Event:
       type: object
       required:
@@ -162,22 +109,6 @@ components:
           additionalProperties:
             type: string
           description: Additional metadata key-value pairs
-    Section:
-      type: object
-      required:
-      - sectionId
-      - events
-      properties:
-        sectionId:
-          type: string
-          description: Unique identifier for the section
-        title:
-          type: string
-          description: Title of the section
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     Author:
       type: object
       required:
@@ -198,9 +129,78 @@ components:
           type: string
           format: uri
           description: Profile URL of the author
+    Card:
+      type: object
+      required:
+      - cardId
+      - channelType
+      - sections
+      properties:
+        cardId:
+          type: string
+          description: Unique identifier for the event card
+        channelType:
+          type: string
+          description: The type of digital channel
+          enum:
+          - SocialMedia
+          - Collaboration
+          - CustomerExperience
+          - Website
+          - Other
+        title:
+          type: string
+          description: Title of the event card
+        source:
+          type: string
+          description: Source platform name
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+    Section:
+      type: object
+      required:
+      - sectionId
+      - events
+      properties:
+        sectionId:
+          type: string
+          description: Unique identifier for the section
+        title:
+          type: string
+          description: Title of the section
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    EventRequest:
+      type: object
+      required:
+      - requestId
+      - card
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        card:
+          $ref: '#/components/schemas/Card'
+    EventResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        cardId:
+          type: string
+          description: ID of the archived event card
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid conversation.
+      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid event.

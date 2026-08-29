@@ -1,16 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Global Relay Conversation Archiving Conversations Files API
-  description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
+  title: Global Relay Files API
   version: 2.0.0
-  contact:
-    name: Global Relay
-    url: https://developers.globalrelay.com/api/conversation-archiving-api/
   license:
     name: Proprietary
     url: https://www.globalrelay.com/legal/
+  description: 'Operations tagged Files across 4 of this provider''s published API definitions: global-relay-conversation-archiving-api-openapi.yml, global-relay-email-archiving-api-openapi.yml, global-relay-event-archiving-api-openapi.yml, global-relay-voice-archiving-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://conversations.api.globalrelay.com/v2
+  description: Production server
+- url: https://email.api.globalrelay.com/v2
+  description: Production server
+- url: https://events.api.globalrelay.com/v2
+  description: Production server
+- url: https://voice.api.globalrelay.com/v2
   description: Production server
 security:
 - BearerAuth: []
@@ -56,27 +59,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    servers:
+    - url: https://conversations.api.globalrelay.com/v2
+      description: Production server
 components:
   schemas:
-    FileUploadRequest:
-      type: object
-      required:
-      - file
-      - fileId
-      properties:
-        file:
-          type: string
-          format: binary
-          description: The file to upload
-        fileId:
-          type: string
-          description: Unique identifier for the file
-        fileName:
-          type: string
-          description: Original filename
-        contentType:
-          type: string
-          description: MIME type of the file
     ErrorResponse:
       type: object
       properties:
@@ -99,9 +86,52 @@ components:
         status:
           type: string
           description: Status of the file upload
+    FileUploadRequest:
+      type: object
+      required:
+      - file
+      - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file
+    FileUploadRequest_2:
+      type: object
+      required:
+      - file
+      - fileId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The audio or video file to upload
+        fileId:
+          type: string
+          description: Unique identifier for the file
+        fileName:
+          type: string
+          description: Original filename
+        contentType:
+          type: string
+          description: MIME type of the file (e.g., audio/wav, video/mp4)
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
       description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid conversation.
+x-refined-from:
+- global-relay-conversation-archiving-api-openapi.yml
+- global-relay-email-archiving-api-openapi.yml
+- global-relay-event-archiving-api-openapi.yml
+- global-relay-voice-archiving-api-openapi.yml

@@ -1,16 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Global Relay Conversation Archiving Conversations Email API
-  description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
+  title: Global Relay Archiving Email API
+  description: The Global Relay Email Archiving API provides a RESTful interface to capture and archive email content and metadata into the Global Relay Archive. It supports archiving emails with attachments, headers, and full message structure. The API uses OAuth 2.0 Client Credentials authentication and provides secure, compliant email archiving for regulated industries.
   version: 2.0.0
   contact:
     name: Global Relay
-    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+    url: https://developers.globalrelay.com/api/email-archiving-api/
   license:
     name: Proprietary
     url: https://www.globalrelay.com/legal/
 servers:
-- url: https://conversations.api.globalrelay.com/v2
+- url: https://email.api.globalrelay.com/v2
   description: Production server
 security:
 - BearerAuth: []
@@ -58,6 +58,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    EmailResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        messageId:
+          type: string
+          description: ID of the archived email
     ErrorResponse:
       type: object
       properties:
@@ -71,39 +83,18 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    EmailResponse:
+    EmailBody:
       type: object
       properties:
-        requestId:
+        contentType:
           type: string
-          format: uuid
-        status:
+          description: MIME type of the body content
+          enum:
+          - text/plain
+          - text/html
+        content:
           type: string
-          description: Status of the archive request
-        messageId:
-          type: string
-          description: ID of the archived email
-    EmailAddress:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          format: email
-          description: Email address
-        displayName:
-          type: string
-          description: Display name
-    EmailHeader:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Header name
-        value:
-          type: string
-          description: Header value
+          description: Body content
     Email:
       type: object
       required:
@@ -155,6 +146,18 @@ components:
           items:
             type: string
           description: IDs of attachments uploaded via /files endpoint
+    EmailAddress:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          format: email
+          description: Email address
+        displayName:
+          type: string
+          description: Display name
     EmailRequest:
       type: object
       required:
@@ -167,21 +170,18 @@ components:
           description: Unique identifier for this API request
         email:
           $ref: '#/components/schemas/Email'
-    EmailBody:
+    EmailHeader:
       type: object
       properties:
-        contentType:
+        name:
           type: string
-          description: MIME type of the body content
-          enum:
-          - text/plain
-          - text/html
-        content:
+          description: Header name
+        value:
           type: string
-          description: Body content
+          description: Header value
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid conversation.
+      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid email.

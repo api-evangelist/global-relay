@@ -1,16 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Global Relay Conversation Archiving Conversations Voice API
-  description: The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API supports all conversation events and provides guardrails and flexibility to efficiently automate the archiving process and meet compliance requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens.
+  title: Global Relay Archiving Voice API
+  description: The Global Relay Voice Archiving API provides a RESTful interface to capture and archive audio and video files, including call recordings and meeting recordings, into the Global Relay Archive. The API ensures all voice and video communications are securely preserved for compliance and regulatory requirements. Authentication uses the Client Credentials OAuth 2.0 grant type with Bearer tokens. The maximum data payload per request is 3.5MB excluding file attachments.
   version: 2.0.0
   contact:
     name: Global Relay
-    url: https://developers.globalrelay.com/api/conversation-archiving-api/
+    url: https://developers.globalrelay.com/api/voice-archiving-api/
   license:
     name: Proprietary
     url: https://www.globalrelay.com/legal/
 servers:
-- url: https://conversations.api.globalrelay.com/v2
+- url: https://voice.api.globalrelay.com/v2
   description: Production server
 security:
 - BearerAuth: []
@@ -58,6 +58,68 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    VoiceRequest:
+      type: object
+      required:
+      - requestId
+      - voiceRecord
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        voiceRecord:
+          $ref: '#/components/schemas/VoiceRecord'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    Participant:
+      type: object
+      required:
+      - participantId
+      - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+        role:
+          type: string
+          description: Role in the call
+          enum:
+          - Host
+          - Presenter
+          - Attendee
+          - Caller
+          - Callee
+    VoiceResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        callId:
+          type: string
+          description: ID of the archived voice record
     VoiceRecord:
       type: object
       required:
@@ -105,71 +167,9 @@ components:
         transcript:
           type: string
           description: Text transcript of the call if available
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
-    VoiceRequest:
-      type: object
-      required:
-      - requestId
-      - voiceRecord
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        voiceRecord:
-          $ref: '#/components/schemas/VoiceRecord'
-    Participant:
-      type: object
-      required:
-      - participantId
-      - displayName
-      properties:
-        participantId:
-          type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
-        role:
-          type: string
-          description: Role in the call
-          enum:
-          - Host
-          - Presenter
-          - Attendee
-          - Caller
-          - Callee
-    VoiceResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        callId:
-          type: string
-          description: ID of the archived voice record
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid conversation.
+      description: OAuth 2.0 Client Credentials grant. Obtain a token from https://iam-oauth2.globalrelay.com/oauth2/token with grant_type=client_credentials and scope=openid voice.
