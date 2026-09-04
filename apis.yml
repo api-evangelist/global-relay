@@ -111,16 +111,17 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: enterprise
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Enterprise · Self-serve signup
-  confidence: high
+  label: Enterprise
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/global-relay.png
 access: 3rd-Party
@@ -159,7 +160,7 @@ common:
     url: https://www.globalrelay.com/resources/blog/
 created: '2025-01-01'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 description: >-
   Global Relay is an enterprise-grade archiving and compliance platform for electronic communications including email,
   instant messaging, voice, video, and collaboration tools across regulated industries. It provides APIs for archiving
