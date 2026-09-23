@@ -58,68 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    VoiceRequest:
-      type: object
-      required:
-      - requestId
-      - voiceRecord
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        voiceRecord:
-          $ref: '#/components/schemas/VoiceRecord'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
-    Participant:
-      type: object
-      required:
-      - participantId
-      - displayName
-      properties:
-        participantId:
-          type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
-        role:
-          type: string
-          description: Role in the call
-          enum:
-          - Host
-          - Presenter
-          - Attendee
-          - Caller
-          - Callee
-    VoiceResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        callId:
-          type: string
-          description: ID of the archived voice record
     VoiceRecord:
       type: object
       required:
@@ -167,6 +105,68 @@ components:
         transcript:
           type: string
           description: Text transcript of the call if available
+    Participant:
+      type: object
+      required:
+      - participantId
+      - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+        role:
+          type: string
+          description: Role in the call
+          enum:
+          - Host
+          - Presenter
+          - Attendee
+          - Caller
+          - Callee
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    VoiceRequest:
+      type: object
+      required:
+      - requestId
+      - voiceRecord
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        voiceRecord:
+          $ref: '#/components/schemas/VoiceRecord'
+    VoiceResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        callId:
+          type: string
+          description: ID of the archived voice record
   securitySchemes:
     BearerAuth:
       type: http

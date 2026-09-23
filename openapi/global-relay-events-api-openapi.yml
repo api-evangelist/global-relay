@@ -58,6 +58,22 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Section:
+      type: object
+      required:
+      - sectionId
+      - events
+      properties:
+        sectionId:
+          type: string
+          description: Unique identifier for the section
+        title:
+          type: string
+          description: Title of the section
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
     ErrorResponse:
       type: object
       properties:
@@ -71,44 +87,6 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    Event:
-      type: object
-      required:
-      - eventType
-      - timestamp
-      properties:
-        eventType:
-          type: string
-          description: Type of event
-          enum:
-          - Post
-          - Comment
-          - Reply
-          - Reaction
-          - Share
-          - Edit
-          - Delete
-          - Like
-          - Follow
-        timestamp:
-          type: string
-          format: date-time
-          description: Timestamp of the event in ISO 8601 format
-        author:
-          $ref: '#/components/schemas/Author'
-        body:
-          type: string
-          description: Content body of the event
-        fileIds:
-          type: array
-          items:
-            type: string
-          description: IDs of files uploaded via /files endpoint
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          description: Additional metadata key-value pairs
     Author:
       type: object
       required:
@@ -158,22 +136,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section'
-    Section:
-      type: object
-      required:
-      - sectionId
-      - events
-      properties:
-        sectionId:
-          type: string
-          description: Unique identifier for the section
-        title:
-          type: string
-          description: Title of the section
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     EventRequest:
       type: object
       required:
@@ -186,6 +148,44 @@ components:
           description: Unique identifier for this API request
         card:
           $ref: '#/components/schemas/Card'
+    Event:
+      type: object
+      required:
+      - eventType
+      - timestamp
+      properties:
+        eventType:
+          type: string
+          description: Type of event
+          enum:
+          - Post
+          - Comment
+          - Reply
+          - Reaction
+          - Share
+          - Edit
+          - Delete
+          - Like
+          - Follow
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the event in ISO 8601 format
+        author:
+          $ref: '#/components/schemas/Author'
+        body:
+          type: string
+          description: Content body of the event
+        fileIds:
+          type: array
+          items:
+            type: string
+          description: IDs of files uploaded via /files endpoint
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional metadata key-value pairs
     EventResponse:
       type: object
       properties:

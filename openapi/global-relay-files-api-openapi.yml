@@ -77,15 +77,6 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    FileResponse:
-      type: object
-      properties:
-        fileId:
-          type: string
-          description: ID of the uploaded file
-        status:
-          type: string
-          description: Status of the file upload
     FileUploadRequest:
       type: object
       required:
@@ -105,6 +96,15 @@ components:
         contentType:
           type: string
           description: MIME type of the file
+    FileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          description: ID of the uploaded file
+        status:
+          type: string
+          description: Status of the file upload
     FileUploadRequest_2:
       type: object
       required:

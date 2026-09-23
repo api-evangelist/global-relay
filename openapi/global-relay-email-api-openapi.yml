@@ -58,18 +58,27 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    EmailResponse:
+    EmailHeader:
       type: object
       properties:
-        requestId:
+        name:
           type: string
-          format: uuid
-        status:
+          description: Header name
+        value:
           type: string
-          description: Status of the archive request
-        messageId:
+          description: Header value
+    EmailAddress:
+      type: object
+      required:
+      - address
+      properties:
+        address:
           type: string
-          description: ID of the archived email
+          format: email
+          description: Email address
+        displayName:
+          type: string
+          description: Display name
     ErrorResponse:
       type: object
       properties:
@@ -83,18 +92,6 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    EmailBody:
-      type: object
-      properties:
-        contentType:
-          type: string
-          description: MIME type of the body content
-          enum:
-          - text/plain
-          - text/html
-        content:
-          type: string
-          description: Body content
     Email:
       type: object
       required:
@@ -146,18 +143,6 @@ components:
           items:
             type: string
           description: IDs of attachments uploaded via /files endpoint
-    EmailAddress:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          format: email
-          description: Email address
-        displayName:
-          type: string
-          description: Display name
     EmailRequest:
       type: object
       required:
@@ -170,15 +155,30 @@ components:
           description: Unique identifier for this API request
         email:
           $ref: '#/components/schemas/Email'
-    EmailHeader:
+    EmailBody:
       type: object
       properties:
-        name:
+        contentType:
           type: string
-          description: Header name
-        value:
+          description: MIME type of the body content
+          enum:
+          - text/plain
+          - text/html
+        content:
           type: string
-          description: Header value
+          description: Body content
+    EmailResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        messageId:
+          type: string
+          description: ID of the archived email
   securitySchemes:
     BearerAuth:
       type: http
