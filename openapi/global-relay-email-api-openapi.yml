@@ -58,6 +58,18 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    EmailBody:
+      type: object
+      properties:
+        contentType:
+          type: string
+          description: MIME type of the body content
+          enum:
+          - text/plain
+          - text/html
+        content:
+          type: string
+          description: Body content
     EmailHeader:
       type: object
       properties:
@@ -67,31 +79,6 @@ components:
         value:
           type: string
           description: Header value
-    EmailAddress:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          format: email
-          description: Email address
-        displayName:
-          type: string
-          description: Display name
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
     Email:
       type: object
       required:
@@ -143,6 +130,19 @@ components:
           items:
             type: string
           description: IDs of attachments uploaded via /files endpoint
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
     EmailRequest:
       type: object
       required:
@@ -155,18 +155,6 @@ components:
           description: Unique identifier for this API request
         email:
           $ref: '#/components/schemas/Email'
-    EmailBody:
-      type: object
-      properties:
-        contentType:
-          type: string
-          description: MIME type of the body content
-          enum:
-          - text/plain
-          - text/html
-        content:
-          type: string
-          description: Body content
     EmailResponse:
       type: object
       properties:
@@ -179,6 +167,18 @@ components:
         messageId:
           type: string
           description: ID of the archived email
+    EmailAddress:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          format: email
+          description: Email address
+        displayName:
+          type: string
+          description: Display name
   securitySchemes:
     BearerAuth:
       type: http

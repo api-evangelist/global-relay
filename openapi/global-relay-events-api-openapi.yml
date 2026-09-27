@@ -74,80 +74,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
-    Author:
-      type: object
-      required:
-      - authorId
-      - displayName
-      properties:
-        authorId:
-          type: string
-          description: Unique identifier for the author
-        displayName:
-          type: string
-          description: Display name of the author
-        email:
-          type: string
-          format: email
-          description: Email address of the author
-        profileUrl:
-          type: string
-          format: uri
-          description: Profile URL of the author
-    Card:
-      type: object
-      required:
-      - cardId
-      - channelType
-      - sections
-      properties:
-        cardId:
-          type: string
-          description: Unique identifier for the event card
-        channelType:
-          type: string
-          description: The type of digital channel
-          enum:
-          - SocialMedia
-          - Collaboration
-          - CustomerExperience
-          - Website
-          - Other
-        title:
-          type: string
-          description: Title of the event card
-        source:
-          type: string
-          description: Source platform name
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-    EventRequest:
-      type: object
-      required:
-      - requestId
-      - card
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        card:
-          $ref: '#/components/schemas/Card'
     Event:
       type: object
       required:
@@ -186,6 +112,68 @@ components:
           additionalProperties:
             type: string
           description: Additional metadata key-value pairs
+    Author:
+      type: object
+      required:
+      - authorId
+      - displayName
+      properties:
+        authorId:
+          type: string
+          description: Unique identifier for the author
+        displayName:
+          type: string
+          description: Display name of the author
+        email:
+          type: string
+          format: email
+          description: Email address of the author
+        profileUrl:
+          type: string
+          format: uri
+          description: Profile URL of the author
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    Card:
+      type: object
+      required:
+      - cardId
+      - channelType
+      - sections
+      properties:
+        cardId:
+          type: string
+          description: Unique identifier for the event card
+        channelType:
+          type: string
+          description: The type of digital channel
+          enum:
+          - SocialMedia
+          - Collaboration
+          - CustomerExperience
+          - Website
+          - Other
+        title:
+          type: string
+          description: Title of the event card
+        source:
+          type: string
+          description: Source platform name
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
     EventResponse:
       type: object
       properties:
@@ -198,6 +186,18 @@ components:
         cardId:
           type: string
           description: ID of the archived event card
+    EventRequest:
+      type: object
+      required:
+      - requestId
+      - card
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        card:
+          $ref: '#/components/schemas/Card'
   securitySchemes:
     BearerAuth:
       type: http

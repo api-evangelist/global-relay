@@ -130,6 +130,18 @@ components:
           - Attendee
           - Caller
           - Callee
+    VoiceResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        callId:
+          type: string
+          description: ID of the archived voice record
     ErrorResponse:
       type: object
       properties:
@@ -155,18 +167,6 @@ components:
           description: Unique identifier for this API request
         voiceRecord:
           $ref: '#/components/schemas/VoiceRecord'
-    VoiceResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        callId:
-          type: string
-          description: ID of the archived voice record
   securitySchemes:
     BearerAuth:
       type: http

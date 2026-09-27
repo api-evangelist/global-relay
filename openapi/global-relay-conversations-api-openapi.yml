@@ -58,18 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ConversationRequest:
-      type: object
-      required:
-      - requestId
-      - conversation
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        conversation:
-          $ref: '#/components/schemas/Conversation'
     Participant:
       type: object
       required:
@@ -86,62 +74,6 @@ components:
           type: string
           format: email
           description: Email address of the participant
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
-    ConversationResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        conversationId:
-          type: string
-          description: ID of the archived conversation
-    Conversation:
-      type: object
-      required:
-      - conversationId
-      - channelType
-      - events
-      properties:
-        conversationId:
-          type: string
-          description: Unique identifier for the conversation
-        channelType:
-          type: string
-          description: The type of messaging channel
-          enum:
-          - IM
-          - GroupChat
-          - Channel
-          - SMS
-          - MMS
-          - Other
-        title:
-          type: string
-          description: Title or subject of the conversation
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     Event:
       type: object
       required:
@@ -179,6 +111,74 @@ components:
         referencedEventId:
           type: string
           description: ID of the event being replied to, edited, or deleted
+    Conversation:
+      type: object
+      required:
+      - conversationId
+      - channelType
+      - events
+      properties:
+        conversationId:
+          type: string
+          description: Unique identifier for the conversation
+        channelType:
+          type: string
+          description: The type of messaging channel
+          enum:
+          - IM
+          - GroupChat
+          - Channel
+          - SMS
+          - MMS
+          - Other
+        title:
+          type: string
+          description: Title or subject of the conversation
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    ConversationResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        conversationId:
+          type: string
+          description: ID of the archived conversation
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    ConversationRequest:
+      type: object
+      required:
+      - requestId
+      - conversation
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        conversation:
+          $ref: '#/components/schemas/Conversation'
   securitySchemes:
     BearerAuth:
       type: http
