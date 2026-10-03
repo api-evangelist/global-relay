@@ -58,6 +58,37 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Conversation:
+      type: object
+      required:
+      - conversationId
+      - channelType
+      - events
+      properties:
+        conversationId:
+          type: string
+          description: Unique identifier for the conversation
+        channelType:
+          type: string
+          description: The type of messaging channel
+          enum:
+          - IM
+          - GroupChat
+          - Channel
+          - SMS
+          - MMS
+          - Other
+        title:
+          type: string
+          description: Title or subject of the conversation
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
     Participant:
       type: object
       required:
@@ -111,49 +142,18 @@ components:
         referencedEventId:
           type: string
           description: ID of the event being replied to, edited, or deleted
-    Conversation:
+    ConversationRequest:
       type: object
       required:
-      - conversationId
-      - channelType
-      - events
-      properties:
-        conversationId:
-          type: string
-          description: Unique identifier for the conversation
-        channelType:
-          type: string
-          description: The type of messaging channel
-          enum:
-          - IM
-          - GroupChat
-          - Channel
-          - SMS
-          - MMS
-          - Other
-        title:
-          type: string
-          description: Title or subject of the conversation
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/Participant'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    ConversationResponse:
-      type: object
+      - requestId
+      - conversation
       properties:
         requestId:
           type: string
           format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        conversationId:
-          type: string
-          description: ID of the archived conversation
+          description: Unique identifier for this API request
+        conversation:
+          $ref: '#/components/schemas/Conversation'
     ErrorResponse:
       type: object
       properties:
@@ -167,18 +167,18 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    ConversationRequest:
+    ConversationResponse:
       type: object
-      required:
-      - requestId
-      - conversation
       properties:
         requestId:
           type: string
           format: uuid
-          description: Unique identifier for this API request
-        conversation:
-          $ref: '#/components/schemas/Conversation'
+        status:
+          type: string
+          description: Status of the archive request
+        conversationId:
+          type: string
+          description: ID of the archived conversation
   securitySchemes:
     BearerAuth:
       type: http

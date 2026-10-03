@@ -58,22 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Section:
-      type: object
-      required:
-      - sectionId
-      - events
-      properties:
-        sectionId:
-          type: string
-          description: Unique identifier for the section
-        title:
-          type: string
-          description: Title of the section
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
     Event:
       type: object
       required:
@@ -112,39 +96,22 @@ components:
           additionalProperties:
             type: string
           description: Additional metadata key-value pairs
-    Author:
+    Section:
       type: object
       required:
-      - authorId
-      - displayName
+      - sectionId
+      - events
       properties:
-        authorId:
+        sectionId:
           type: string
-          description: Unique identifier for the author
-        displayName:
+          description: Unique identifier for the section
+        title:
           type: string
-          description: Display name of the author
-        email:
-          type: string
-          format: email
-          description: Email address of the author
-        profileUrl:
-          type: string
-          format: uri
-          description: Profile URL of the author
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
+          description: Title of the section
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
     Card:
       type: object
       required:
@@ -186,6 +153,39 @@ components:
         cardId:
           type: string
           description: ID of the archived event card
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    Author:
+      type: object
+      required:
+      - authorId
+      - displayName
+      properties:
+        authorId:
+          type: string
+          description: Unique identifier for the author
+        displayName:
+          type: string
+          description: Display name of the author
+        email:
+          type: string
+          format: email
+          description: Email address of the author
+        profileUrl:
+          type: string
+          format: uri
+          description: Profile URL of the author
     EventRequest:
       type: object
       required:

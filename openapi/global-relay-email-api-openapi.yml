@@ -58,27 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    EmailBody:
-      type: object
-      properties:
-        contentType:
-          type: string
-          description: MIME type of the body content
-          enum:
-          - text/plain
-          - text/html
-        content:
-          type: string
-          description: Body content
-    EmailHeader:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Header name
-        value:
-          type: string
-          description: Header value
     Email:
       type: object
       required:
@@ -130,6 +109,63 @@ components:
           items:
             type: string
           description: IDs of attachments uploaded via /files endpoint
+    EmailRequest:
+      type: object
+      required:
+      - requestId
+      - email
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        email:
+          $ref: '#/components/schemas/Email'
+    EmailHeader:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Header name
+        value:
+          type: string
+          description: Header value
+    EmailResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        messageId:
+          type: string
+          description: ID of the archived email
+    EmailBody:
+      type: object
+      properties:
+        contentType:
+          type: string
+          description: MIME type of the body content
+          enum:
+          - text/plain
+          - text/html
+        content:
+          type: string
+          description: Body content
+    EmailAddress:
+      type: object
+      required:
+      - address
+      properties:
+        address:
+          type: string
+          format: email
+          description: Email address
+        displayName:
+          type: string
+          description: Display name
     ErrorResponse:
       type: object
       properties:
@@ -143,42 +179,6 @@ components:
           type: string
           format: uuid
           description: Request ID for troubleshooting
-    EmailRequest:
-      type: object
-      required:
-      - requestId
-      - email
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        email:
-          $ref: '#/components/schemas/Email'
-    EmailResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        messageId:
-          type: string
-          description: ID of the archived email
-    EmailAddress:
-      type: object
-      required:
-      - address
-      properties:
-        address:
-          type: string
-          format: email
-          description: Email address
-        displayName:
-          type: string
-          description: Display name
   securitySchemes:
     BearerAuth:
       type: http
