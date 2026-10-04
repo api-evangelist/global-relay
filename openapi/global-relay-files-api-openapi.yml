@@ -64,19 +64,6 @@ paths:
       description: Production server
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
     FileResponse:
       type: object
       properties:
@@ -105,6 +92,19 @@ components:
         contentType:
           type: string
           description: MIME type of the file
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
     FileUploadRequest_2:
       type: object
       required:

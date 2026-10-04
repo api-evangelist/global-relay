@@ -58,6 +58,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Participant:
+      type: object
+      required:
+      - participantId
+      - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+    ConversationResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        conversationId:
+          type: string
+          description: ID of the archived conversation
     Conversation:
       type: object
       required:
@@ -89,22 +117,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
-    Participant:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    ConversationRequest:
       type: object
       required:
-      - participantId
-      - displayName
+      - requestId
+      - conversation
       properties:
-        participantId:
+        requestId:
           type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
+          format: uuid
+          description: Unique identifier for this API request
+        conversation:
+          $ref: '#/components/schemas/Conversation'
     Event:
       type: object
       required:
@@ -142,43 +179,6 @@ components:
         referencedEventId:
           type: string
           description: ID of the event being replied to, edited, or deleted
-    ConversationRequest:
-      type: object
-      required:
-      - requestId
-      - conversation
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        conversation:
-          $ref: '#/components/schemas/Conversation'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
-    ConversationResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        conversationId:
-          type: string
-          description: ID of the archived conversation
   securitySchemes:
     BearerAuth:
       type: http

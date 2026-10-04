@@ -58,6 +58,108 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    Section:
+      type: object
+      required:
+      - sectionId
+      - events
+      properties:
+        sectionId:
+          type: string
+          description: Unique identifier for the section
+        title:
+          type: string
+          description: Title of the section
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+    Author:
+      type: object
+      required:
+      - authorId
+      - displayName
+      properties:
+        authorId:
+          type: string
+          description: Unique identifier for the author
+        displayName:
+          type: string
+          description: Display name of the author
+        email:
+          type: string
+          format: email
+          description: Email address of the author
+        profileUrl:
+          type: string
+          format: uri
+          description: Profile URL of the author
+    Card:
+      type: object
+      required:
+      - cardId
+      - channelType
+      - sections
+      properties:
+        cardId:
+          type: string
+          description: Unique identifier for the event card
+        channelType:
+          type: string
+          description: The type of digital channel
+          enum:
+          - SocialMedia
+          - Collaboration
+          - CustomerExperience
+          - Website
+          - Other
+        title:
+          type: string
+          description: Title of the event card
+        source:
+          type: string
+          description: Source platform name
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
+    EventRequest:
+      type: object
+      required:
+      - requestId
+      - card
+      properties:
+        requestId:
+          type: string
+          format: uuid
+          description: Unique identifier for this API request
+        card:
+          $ref: '#/components/schemas/Card'
+    EventResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        cardId:
+          type: string
+          description: ID of the archived event card
     Event:
       type: object
       required:
@@ -96,108 +198,6 @@ components:
           additionalProperties:
             type: string
           description: Additional metadata key-value pairs
-    Section:
-      type: object
-      required:
-      - sectionId
-      - events
-      properties:
-        sectionId:
-          type: string
-          description: Unique identifier for the section
-        title:
-          type: string
-          description: Title of the section
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-    Card:
-      type: object
-      required:
-      - cardId
-      - channelType
-      - sections
-      properties:
-        cardId:
-          type: string
-          description: Unique identifier for the event card
-        channelType:
-          type: string
-          description: The type of digital channel
-          enum:
-          - SocialMedia
-          - Collaboration
-          - CustomerExperience
-          - Website
-          - Other
-        title:
-          type: string
-          description: Title of the event card
-        source:
-          type: string
-          description: Source platform name
-        sections:
-          type: array
-          items:
-            $ref: '#/components/schemas/Section'
-    EventResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        cardId:
-          type: string
-          description: ID of the archived event card
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Human-readable error message
-        requestId:
-          type: string
-          format: uuid
-          description: Request ID for troubleshooting
-    Author:
-      type: object
-      required:
-      - authorId
-      - displayName
-      properties:
-        authorId:
-          type: string
-          description: Unique identifier for the author
-        displayName:
-          type: string
-          description: Display name of the author
-        email:
-          type: string
-          format: email
-          description: Email address of the author
-        profileUrl:
-          type: string
-          format: uri
-          description: Profile URL of the author
-    EventRequest:
-      type: object
-      required:
-      - requestId
-      - card
-      properties:
-        requestId:
-          type: string
-          format: uuid
-          description: Unique identifier for this API request
-        card:
-          $ref: '#/components/schemas/Card'
   securitySchemes:
     BearerAuth:
       type: http

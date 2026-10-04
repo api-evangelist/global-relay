@@ -58,31 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Participant:
-      type: object
-      required:
-      - participantId
-      - displayName
-      properties:
-        participantId:
-          type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
-        role:
-          type: string
-          description: Role in the call
-          enum:
-          - Host
-          - Presenter
-          - Attendee
-          - Caller
-          - Callee
     VoiceRequest:
       type: object
       required:
@@ -142,6 +117,31 @@ components:
         transcript:
           type: string
           description: Text transcript of the call if available
+    Participant:
+      type: object
+      required:
+      - participantId
+      - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+        role:
+          type: string
+          description: Role in the call
+          enum:
+          - Host
+          - Presenter
+          - Attendee
+          - Caller
+          - Callee
     VoiceResponse:
       type: object
       properties:
