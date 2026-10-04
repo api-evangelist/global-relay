@@ -126,6 +126,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/global-relay.png
 access: 3rd-Party
 common:
+  - type: CapabilityMap
+    url: capabilities/global-relay-capability-edges.yml
+    name: Global Relay Business Capability Map
   - type: Website
     url: https://www.globalrelay.com/
   - type: AgenticAccess

@@ -1,0 +1,37 @@
+slug: global-relay
+provider: Global Relay
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Email
+  spec_file: global-relay-email-api-openapi.yml
+  capability_id: BC-130.10
+  capability_id_l1: BC-130
+  capability_name: Regulatory Compliance Management
+  confidence: 0.72
+  evidence: '''provides secure, compliant email archiving for regulated industries'' ; POST /email archiveEmail'
+  reason: Ingests email content and metadata into a compliance archive; the spec explicitly frames it
+    as compliant archiving for regulated industries, i.e. regulatory compliance recordkeeping, not corporate
+    email/communications management.
+- tag: Conversations
+  spec_file: global-relay-conversations-api-openapi.yml
+  capability_id: BC-130.10
+  capability_id_l1: BC-130
+  capability_name: Regulatory Compliance Management
+  confidence: 0.7
+  evidence: 'POST /conversations archiveConversation ''Global Relay Archive a conversation''; vendor:
+    ''ensuring organizations meet their compliance and regulatory re[quirements]'''
+  reason: The operation captures messaging conversations into a compliance archive for regulated industries.
+    The purpose stated in the spec is regulatory recordkeeping of electronic communications, which maps
+    to regulatory compliance management rather than any messaging/collaboration capability. Moderate confidence
+    because the surface is a single ingestion endpoint and could also be read as data governance.
