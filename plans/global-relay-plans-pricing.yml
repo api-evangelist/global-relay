@@ -75,3 +75,31 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - seat
+  units:
+  - data
+  - seat
+  plans:
+  - name: Archive (Custom Quote)
+    access: enterprise
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    - seat
+    periods:
+    - month
+    - year
+  - name: Supervision / Surveillance Add-on
+    access: enterprise
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
