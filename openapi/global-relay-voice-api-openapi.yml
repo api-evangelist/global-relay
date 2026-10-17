@@ -70,6 +70,43 @@ components:
           description: Unique identifier for this API request
         voiceRecord:
           $ref: '#/components/schemas/VoiceRecord'
+    Participant:
+      type: object
+      required:
+      - participantId
+      - displayName
+      properties:
+        participantId:
+          type: string
+          description: Unique identifier for the participant
+        displayName:
+          type: string
+          description: Display name of the participant
+        email:
+          type: string
+          format: email
+          description: Email address of the participant
+        role:
+          type: string
+          description: Role in the call
+          enum:
+          - Host
+          - Presenter
+          - Attendee
+          - Caller
+          - Callee
+    VoiceResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        callId:
+          type: string
+          description: ID of the archived voice record
     VoiceRecord:
       type: object
       required:
@@ -117,43 +154,6 @@ components:
         transcript:
           type: string
           description: Text transcript of the call if available
-    Participant:
-      type: object
-      required:
-      - participantId
-      - displayName
-      properties:
-        participantId:
-          type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
-        role:
-          type: string
-          description: Role in the call
-          enum:
-          - Host
-          - Presenter
-          - Attendee
-          - Caller
-          - Callee
-    VoiceResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        callId:
-          type: string
-          description: ID of the archived voice record
     ErrorResponse:
       type: object
       properties:

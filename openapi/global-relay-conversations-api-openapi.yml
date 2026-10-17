@@ -58,34 +58,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Participant:
-      type: object
-      required:
-      - participantId
-      - displayName
-      properties:
-        participantId:
-          type: string
-          description: Unique identifier for the participant
-        displayName:
-          type: string
-          description: Display name of the participant
-        email:
-          type: string
-          format: email
-          description: Email address of the participant
-    ConversationResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-          format: uuid
-        status:
-          type: string
-          description: Status of the archive request
-        conversationId:
-          type: string
-          description: ID of the archived conversation
     Conversation:
       type: object
       required:
@@ -117,19 +89,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Event'
-    ErrorResponse:
+    Participant:
       type: object
+      required:
+      - participantId
+      - displayName
       properties:
-        error:
+        participantId:
           type: string
-          description: Error code
-        message:
+          description: Unique identifier for the participant
+        displayName:
           type: string
-          description: Human-readable error message
-        requestId:
+          description: Display name of the participant
+        email:
           type: string
-          format: uuid
-          description: Request ID for troubleshooting
+          format: email
+          description: Email address of the participant
     ConversationRequest:
       type: object
       required:
@@ -179,6 +154,31 @@ components:
         referencedEventId:
           type: string
           description: ID of the event being replied to, edited, or deleted
+    ConversationResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          description: Status of the archive request
+        conversationId:
+          type: string
+          description: ID of the archived conversation
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human-readable error message
+        requestId:
+          type: string
+          format: uuid
+          description: Request ID for troubleshooting
   securitySchemes:
     BearerAuth:
       type: http
