@@ -1,0 +1,43 @@
+edges:
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A2J6HGDB2-global-relay-archive-for-slack
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Global Relay Archive for Slack
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Zoom (own)
+  partner: zoom
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.zoom.us/apps/2sOIsn-zSUWfzGi-o-gY5g
+  mirror_of: zoom/integrations/zoom-integration-edges.yml
+  apps:
+  - Global Relay Archive for Zoom Solutions
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Zoom app
+generated: '2026-10-18'
+method: searched
+source:
+- slack/integrations/slack-integration-edges.yml
+- zoom/integrations/zoom-integration-edges.yml
+checked:
+- slack/integrations/slack-integration-edges.yml
+- zoom/integrations/zoom-integration-edges.yml
