@@ -1,4 +1,4 @@
-# Global Relay (global-relay)
+# Global Relay
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,117 +66,153 @@
 
 Global Relay is an enterprise-grade archiving and compliance platform for electronic communications including email, instant messaging, voice, video, and collaboration tools across regulated industries. It provides APIs for archiving conversations, emails, voice recordings, and event feeds from social media and collaboration platforms, ensuring organizations meet their compliance and regulatory requirements through secure, tamper-proof archiving with OAuth 2.0 authenticated REST APIs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/global-relay/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/global-relay/refs/heads/main/apis.yml)
+**Areas:** Archiving · Compliance · Data Retention · Email Security · Regulatory Compliance
 
-## Scope
+## Global Relay on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Global Relay is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/global-relay/](https://apis.io/providers/global-relay/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Archiving
-- Compliance
-- Data Retention
-- Email Security
-- Regulatory Compliance
+- [Global Relay Conversations API](https://apis.io/apis/global-relay/global-relay-conversations-api/) — Endpoints for archiving conversations
+- [Global Relay Email API](https://apis.io/apis/global-relay/global-relay-email-api/) — Endpoints for archiving email messages
+- [Global Relay Events API](https://apis.io/apis/global-relay/global-relay-events-api/) — Endpoints for archiving event cards
+- [Global Relay Files API](https://apis.io/apis/global-relay/global-relay-files-api/) — Endpoints for uploading file attachments
+- [Global Relay Voice API](https://apis.io/apis/global-relay/global-relay-voice-api/) — Endpoints for archiving voice and video recordings
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Global Relay Conversation Archiving API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Global Relay Conversation Archiving API provides a RESTful interface to seamlessly integrate messaging platforms with the Global Relay Archive. It enables secure capture and preservation of one-to-one or multi-party conversations, including text messages, file attachments, reactions, edits, and deletions. The API uses OAuth 2.0 Client Credentials authentication and is rate limited to 1000 requests per minute for conversations and 100 per minute for files.
+- [Global Relay Agentic Access](https://apis.io/agentic-access/global-relay/global-relay-agentic-access/)
 
-- **Human URL:** [https://developers.globalrelay.com/api/conversation-archiving-api/](https://developers.globalrelay.com/api/conversation-archiving-api/)
+#### JSON Schema (8)
 
-#### Tags
+The data models the API reads and writes.
 
-- Archiving
-- Compliance
-- Messaging
+- [Global Relay Conversation](https://apis.io/schemas/global-relay/global-relay-conversation/)
+- [Global Relay Email](https://apis.io/schemas/global-relay/global-relay-email/)
+- [Global Relay Email Address](https://apis.io/schemas/global-relay/global-relay-email-address/)
+- [Global Relay Event](https://apis.io/schemas/global-relay/global-relay-event/)
+- [Global Relay Event Card](https://apis.io/schemas/global-relay/global-relay-event-card/)
+- [Global Relay File](https://apis.io/schemas/global-relay/global-relay-file/)
+- [Global Relay Participant](https://apis.io/schemas/global-relay/global-relay-participant/)
+- [Global Relay Voice Record](https://apis.io/schemas/global-relay/global-relay-voice-record/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://developers.globalrelay.com/api/conversation-archiving-api/)
-- [OpenAPI](openapi/global-relay-conversation-archiving-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/global-relay-conversation-archiving-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/global-relay-conversation-archiving-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-### Global Relay Email Archiving API
+- [Global Relay Context](https://apis.io/jsonld/global-relay/global-relay-context/)
 
-The Global Relay Email Archiving API provides a RESTful interface to capture and archive email content and metadata into the Global Relay Archive. It supports archiving emails with attachments, headers, and full message structure for compliance and regulatory requirements. Rate limited to 1000 requests per minute for emails and 100 per minute for files.
+#### Collections (9)
 
-- **Human URL:** [https://developers.globalrelay.com/api/email-archiving-api/](https://developers.globalrelay.com/api/email-archiving-api/)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Global Relay Conversation Archiving API](https://apis.io/collections/global-relay/open-global-relay-conversation-archiving-api/)
+- [Global Relay Conversation Archiving Conversations API](https://apis.io/collections/global-relay/open-global-relay-conversations-api/)
+- [Global Relay Conversation Archiving Conversations Email API](https://apis.io/collections/global-relay/open-global-relay-email-api/)
+- [Global Relay Email Archiving API](https://apis.io/collections/global-relay/open-global-relay-email-archiving-api/)
+- [Global Relay Event Archiving API](https://apis.io/collections/global-relay/open-global-relay-event-archiving-api/)
+- [Global Relay Conversation Archiving Conversations Events API](https://apis.io/collections/global-relay/open-global-relay-events-api/)
+- [Global Relay Conversation Archiving Conversations Files API](https://apis.io/collections/global-relay/open-global-relay-files-api/)
+- [Global Relay Conversation Archiving Conversations Voice API](https://apis.io/collections/global-relay/open-global-relay-voice-api/)
+- [Global Relay Voice Archiving API](https://apis.io/collections/global-relay/open-global-relay-voice-archiving-api/)
 
-- Archiving
-- Compliance
-- Email
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://developers.globalrelay.com/api/email-archiving-api/)
-- [OpenAPI](openapi/global-relay-email-archiving-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/global-relay-email-archiving-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/global-relay-email-archiving-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Global Relay — jsonschema rules](https://apis.io/rules/global-relay/global-relay-jsonschema-spectral-rules/)
 
-### Global Relay Voice Archiving API
+#### Security (3)
 
-The Global Relay Voice Archiving API provides a RESTful interface to capture and archive audio and video recordings, including call recordings and meeting recordings, into the Global Relay Archive. The API ensures all voice and video communications are securely preserved for compliance. The maximum data payload per request is 3.5MB excluding file attachments.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://developers.globalrelay.com/api/voice-archiving-api/](https://developers.globalrelay.com/api/voice-archiving-api/)
+- [Global Relay Authentication](https://apis.io/security/global-relay/global-relay-authentication/)
+- [Global Relay Domain Security](https://apis.io/security/global-relay/global-relay-domain-security/)
+- [Global Relay Trust Center](https://apis.io/security/global-relay/global-relay-trust-center/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Archiving
-- Compliance
-- Voice
+Published plans, tiers and prices.
 
-#### Properties
+- [Global Relay Plans Pricing](https://apis.io/plans/global-relay/global-relay-plans-pricing/)
 
-- [Documentation](https://developers.globalrelay.com/api/voice-archiving-api/)
-- [OpenAPI](openapi/global-relay-voice-archiving-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/global-relay-voice-archiving-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/global-relay-voice-archiving-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Global Relay Event Archiving API
+Published request limits.
 
-The Global Relay Event Archiving API (EventFeed) provides a RESTful interface to integrate collaboration platforms, customer experience tools, and social media sites with the Global Relay Archive. It enables secure capture of event-based data including posts, comments, reactions, and activity feeds from various digital channels for compliance archiving.
+- [Global Relay Rate Limits](https://apis.io/rate-limits/global-relay/global-relay-rate-limits/)
 
-- **Human URL:** [https://developers.globalrelay.com/api/event-archiving-api/](https://developers.globalrelay.com/api/event-archiving-api/)
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Archiving
-- Collaboration
-- Compliance
-- Social Media
+- [Global Relay Finops](https://apis.io/finops/global-relay/global-relay-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://developers.globalrelay.com/api/event-archiving-api/)
-- [OpenAPI](openapi/global-relay-event-archiving-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/global-relay-event-archiving-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/global-relay-event-archiving-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-## Common Properties
-
-- [GitHub Organization](https://github.com/globalrelay)
-- [LinkedIn](https://www.linkedin.com/company/global-relay)
-- [Portal](https://developers.globalrelay.com/)
+- [Website](https://www.globalrelay.com/)
 - [Documentation](https://www.globalrelay.com/connector/conversation-archiving-api/)
-- [Documentation](https://www.globalrelay.com/connector/eventfeed-archiving-api/)
-- [Documentation](https://www.globalrelay.com/connector/voice-archiving-api/)
-- [L L Ms Txt](https://globalrelay.com/llms.txt)
+- [Blog](https://www.globalrelay.com/resources/blog/)
+- [GitHub](https://github.com/globalrelay)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 33.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 58.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 13.2 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/global-relay/](https://apis.io/providers/global-relay/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Global Relay: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/global-relay/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
